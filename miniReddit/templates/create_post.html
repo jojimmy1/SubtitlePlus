@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<a href="/{{hashedcode}}/feed/1">
+<img src="{{ url_for('static', filename='../static/pic/logo.jpg') }}" alt="logo" style="width:120px;height:42px;">
+</a>
+<a href="/{{hashedcode}}/profile/1" style="float:right">{{name2}}</a>
+<br>
+
+    <div class="container">
+        <br>
+        <h1>Create a new post</h1>
+    
+        <form action="/create_done" method="POST" id = "form">
+
+            <div class="form-group">
+                <label for="title1">Title <span class="require">(required)</span></label>
+                <input type="text" class="form-control" name="title1" id="title1"/>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea rows="5" class="form-control" name="content1" id="content1"></textarea>
+            </div>
+            
+            <input type="hidden" id="id2" name="id2" value={{hashedcode}}>
+            
+            <div class="form-group">
+                <button type="submit" value="Submit" class="btn btn-primary">
+                    Create Post
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

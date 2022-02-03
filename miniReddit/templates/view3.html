@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href={{ url_for('static', filename='../static/styles/view21.css') }} rel="stylesheet"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- <script rel = "stylesheet" src = "../scripts/view3.js"></script> -->
+{% for key,value in data.items() %}
+<script>
+$(document).ready(function() { 
+<!-- style="display:none;" -->
+		<!-- var i; -->
+		<!-- for (i = 5; i <= 9; i++) { -->
+			<!-- <!-- var b = i.toString(); --> -->
+			<!-- $('#5').attr("style", "display:none;"); -->
+		<!-- } -->
+		<!-- $('#5').attr("style", "display:none;"); -->
+		$('#{{pagenum}}').attr("class", "active");
+		$('#hi1{{key[1]}}').on('submit',function(event) { 
+			$.ajax({
+			data : {
+				userid : $('#id11{{key[1]}}').val(),
+				count1 : $('#count11{{key[1]}}').val(),
+				postid : $('#post11{{key[1]}}').val()
+			},
+			type : 'POST',
+			url : '/vote'
+		})
+		.done(function(data) {
+
+			if (data.error) {
+				alert("You have alreday voted.")
+			}
+			else {
+				$("#vote00{{key[1]}}").text(data.count);
+			}
+		});
+
+		event.preventDefault();
+	}); 
+		$('#hi2{{key[1]}}').on('submit',function(event) { 
+			$.ajax({
+			data : {
+				userid : $('#id22{{key[1]}}').val(),
+				count1 : $('#count22{{key[1]}}').val(),
+				postid : $('#post22{{key[1]}}').val()
+			},
+			type : 'POST',
+			url : '/vote'
+		})
+		.done(function(data) {
+
+			if (data.error) {
+				alert("You have alreday voted.")
+			}
+			else {
+				$("#vote00{{key[1]}}").text(data.count);
+			}
+		});
+
+		event.preventDefault();
+	});
+}); 
+</script>
+<!-- <style> -->
+<!-- table { -->
+  <!-- font-family: arial, sans-serif; -->
+  <!-- border-collapse: collapse; -->
+  <!-- width: 100%; -->
+<!-- } -->
+
+<!-- td, th { -->
+  <!-- border: 1px solid #dddddd; -->
+  <!-- text-align: left; -->
+  <!-- padding: 8px; -->
+  <!-- width: 50%; -->
+<!-- } -->
+
+<!-- tr:nth-child(even) { -->
+  <!-- background-color: #dddddd; -->
+<!-- } -->
+<!-- </style> -->
+{% endfor %}
+
+{% for key,value in dict2.items() %}
+<script>
+$(document).ready(function() { 
+		$('#{{value}}').attr("style", "display:none;");
+}); 
+</script>
+{% endfor %}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<a href="/{{hashedcode}}/feed/1">
+<img src="{{ url_for('static', filename='../static/pic/logo.jpg') }}" alt="logo" style="width:120px;height:42px;">
+</a>
+<a href="/{{hashedcode}}/profile/1" style="float:right">{{name2}}</a>
+
+<div class="container">
+
+<br>
+<h2>Feed Page</h2>
+<a href="/{{hashedcode}}/create">Create New post</a>
+
+<br><br>
+
+<table>
+
+  <tr>
+	<th>Title</th>
+    <th>Content</th>
+	<th>Time</th>
+	<th>Vote Count</th>
+	<th>Vote</th>
+  </tr>
+{% for key,value in data.items() %}
+  
+  <tr>
+    <td><a href="/posts/{{key[1]}}/{{hashedcode}}">{{key[0]}}</td>
+    <td><span style="width:500px; word-wrap:break-word; display:inline-block;">{{value[0]}}</span></td>
+	<td>{{value[2]}} hour(s) ago</td>
+	<td id='vote00{{key[1]}}'>{{value[1]}}</td>
+	<td><form id='hi1{{key[1]}}' class="form-inline">
+		<input type="hidden" id="id11{{key[1]}}" name="id11" value={{hashedcode}}>
+		<input type="hidden" id="post11{{key[1]}}" name="post11" value={{key[1]}}>
+		<input type="hidden" id="count11{{key[1]}}" name="count11" value=1>
+		<button type="submit">Upvote</button></form>
+		<form id='hi2{{key[1]}}' class="form-inline">
+		<input type="hidden" id="id22{{key[1]}}" name="id22" value={{hashedcode}}>
+		<input type="hidden" id="post22{{key[1]}}" name="post22" value={{key[1]}}>
+		<input type="hidden" id="count22{{key[1]}}" name="count22" value=-1>
+		<button type="submit">Downvote</button>
+	</form></td>
+	<!-- <td><a href="/posts/{{key[1]}}">VIEW</a></td> -->
+  </tr>
+{% endfor %}
+</table>
+
+<nav aria-label="Page navigation">
+	<ul class="pagination justify-content-center" style="margin:20px 0">
+	  <li class="page-item" id=1><a class="page-link" href="/{{hashedcode}}/feed/1">1</a></li>
+	  <li class="page-item" id=2><a class="page-link" href="/{{hashedcode}}/feed/2">2</a></li>
+	  <li class="page-item" id=3><a class="page-link" href="/{{hashedcode}}/feed/3">3</a></li>
+	  <li class="page-item" id=4><a class="page-link" href="/{{hashedcode}}/feed/4">4</a></li>
+	  <li class="page-item" id=5><a class="page-link" href="/{{hashedcode}}/feed/5">5</a></li>
+	  <li class="page-item" id=6><a class="page-link" href="/{{hashedcode}}/feed/6">6</a></li>
+	  <li class="page-item" id=7><a class="page-link" href="/{{hashedcode}}/feed/7">7</a></li>
+	  <li class="page-item" id=8><a class="page-link" href="/{{hashedcode}}/feed/8">8</a></li>
+	  <li class="page-item" id=9><a class="page-link" href="/{{hashedcode}}/feed/9">9</a></li>
+	  <li class="page-item" id=10><a class="page-link" href="/{{hashedcode}}/feed/10">10</a></li>
+	</ul>
+  </nav>
+
+</div>
+
+</body>
+</html>

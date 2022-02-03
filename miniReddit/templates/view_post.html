@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+	<title>Read Post Webpage</title>
+	
+	<script>
+$(document).ready(function() { 
+		$('#hi1').on('submit',function(event) { 
+			$.ajax({
+			data : {
+				userid : $('#id11').val(),
+				count1 : $('#count11').val(),
+				postid : $('#post11').val()
+			},
+			type : 'POST',
+			url : '/vote'
+		})
+		.done(function(data) {
+
+			if (data.error) {
+				alert("You have alreday voted.")
+			}
+			else {
+				$("#vote00").text(data.count);
+			}
+		});
+
+		event.preventDefault();
+	}); 
+		$('#hi2').on('submit',function(event) { 
+			$.ajax({
+			data : {
+				userid : $('#id22').val(),
+				count1 : $('#count22').val(),
+				postid : $('#post22').val()
+			},
+			type : 'POST',
+			url : '/vote'
+		})
+		.done(function(data) {
+
+			if (data.error) {
+				alert("You have alreday voted.")
+			}
+			else {
+				$("#vote00").text(data.count);
+			}
+		});
+
+		event.preventDefault();
+	});
+}); 
+</script>
+<style>
+	h1 {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+</style>
+</head>
+
+<body>
+<a href="/{{hashedcode}}/feed/1">
+<img src="{{ url_for('static', filename='../static/pic/logo.jpg') }}" alt="logo" style="width:120px;height:42px;">
+</a>
+<a href="/{{hashedcode}}/profile/1" style="float:right">{{name2}}</a>
+	<div class="container">
+		
+		<div class="col-md-10 blogShort">
+			<br>
+			<div class="row">
+				<div class="col-xs-8">
+					<h1>{{title1}}</h1>
+				</div>
+				<div class="col-xs-4">
+					<h1>ID:{{id1}}</h1>
+				</div>
+			</div>
+			<br>
+			<article>
+			<!-- <textarea style="width:500px;height:500px; word-wrap:break-word;"> -->
+				<!-- <p></p> -->
+			<!-- </textarea> -->
+			<span style="width:800px; word-wrap:break-word; display:inline-block;"> 
+			   {{content1}}
+			</span>
+			</article>
+			<br>
+			<!-- <td><a href="/{{hashid1}}/profile">Back to Profile</a></td> -->
+		</div>
+	
+	<!-- 1111111111111 -->
+	
+
+
+	</div>
+	<div class="container">
+	<p>Time: {{half30}} hour(s) ago</p>
+	<p>Vote count:</p>
+	<p id='vote00'>{{count99}}</p>
+		<p><form id='hi1' class="form-inline">
+			<input type="hidden" id="id11" name="id11" value={{hashedcode}}>
+			<input type="hidden" id="post11" name="post11" value={{postid}}>
+			<input type="hidden" id="count11" name="count11" value=1>
+			<button type="submit">Upvote</button></form>
+			<form id='hi2' class="form-inline">
+			<input type="hidden" id="id22" name="id22" value={{hashedcode}}>
+			<input type="hidden" id="post22" name="post22" value={{postid}}>
+			<input type="hidden" id="count22" name="count22" value=-1>
+			<button type="submit">Downvote</button>
+		</form></p>
+	<!-- <table> -->
+
+	  <!-- <tr> -->
+		<!-- <th>Time</th> -->
+		<!-- <th>Vote Count</th> -->
+		<!-- <th>Vote</th> -->
+	  <!-- </tr> -->
+	  <!-- <tr> -->
+		<!-- <td>{{half30}} hour(s) ago</td> -->
+		<!-- <td id='vote00'>{{count99}}</td> -->
+		<!-- <td><form id='hi1' class="form-inline"> -->
+			<!-- <input type="hidden" id="id11" name="id11" value={{hashedcode}}> -->
+			<!-- <input type="hidden" id="post11" name="post11" value={{postid}}> -->
+			<!-- <input type="hidden" id="count11" name="count11" value=1> -->
+			<!-- <button type="submit">Upvote</button></form> -->
+			<!-- <form id='hi2' class="form-inline"> -->
+			<!-- <input type="hidden" id="id22" name="id22" value={{hashedcode}}> -->
+			<!-- <input type="hidden" id="post22" name="post22" value={{postid}}> -->
+			<!-- <input type="hidden" id="count22" name="count22" value=-1> -->
+			<!-- <button type="submit">Downvote</button> -->
+		<!-- </form></td> -->
+	  <!-- </tr> -->
+	<!-- </table> -->
+	</div>
+</body>
+
+</html>
