@@ -24,7 +24,6 @@ jobs:
                   cd miniReddit
                   ls
                   docker build . -t python-minred:v3.0
-                  docker run -p 8001:8001 python-minred:v3.0
                   
 
 # Invoke jobs via workflows
