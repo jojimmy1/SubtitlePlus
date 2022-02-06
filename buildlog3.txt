@@ -1,0 +1,23 @@
+[+] Building 13.6s (14/14) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 32B                                                                                0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => resolve image config for docker.io/docker/dockerfile:1                                                        12.3s
+ => CACHED docker-image://docker.io/docker/dockerfile:1@sha256:42399d4635eddd7a9b8a24be879d2f9a930d0ed040a61324cf  0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => [internal] load metadata for docker.io/library/python:3.10-slim                                                0.8s
+ => [internal] load build context                                                                                  0.0s
+ => => transferring context: 904B                                                                                  0.0s
+ => [1/5] FROM docker.io/library/python:3.10-slim@sha256:42d13fdfccf5d97bd23f9c054f22bde0451a3da0a7bb518bcd95fec6  0.0s
+ => CACHED [2/5] WORKDIR /app                                                                                      0.0s
+ => CACHED [3/5] COPY requirements.txt requirements.txt                                                            0.0s
+ => CACHED [4/5] RUN pip3 install -r requirements.txt                                                              0.0s
+ => CACHED [5/5] COPY . .                                                                                          0.0s
+ => exporting to image                                                                                             0.0s
+ => => exporting layers                                                                                            0.0s
+ => => writing image sha256:14a9d3ce4240f2f20dcf3a2e44bca17e6b27478157f6ed27673762403cb0e92d                       0.0s
+ => => naming to docker.io/library/minireddit3:v1.3                                                                0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them

@@ -1,0 +1,31 @@
+[+] Building 21.4s (16/16) FINISHED
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 32B                                                                                0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => resolve image config for docker.io/docker/dockerfile:1                                                        13.0s
+ => [auth] docker/dockerfile:pull token for registry-1.docker.io                                                   0.0s
+ => CACHED docker-image://docker.io/docker/dockerfile:1@sha256:42399d4635eddd7a9b8a24be879d2f9a930d0ed040a61324cf  0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => [internal] load metadata for docker.io/library/python:3.10-slim                                                1.4s
+ => [auth] library/python:pull token for registry-1.docker.io                                                      0.0s
+ => [internal] load build context                                                                                  0.0s
+ => => transferring context: 904B                                                                                  0.0s
+ => [1/5] FROM docker.io/library/python:3.10-slim@sha256:42d13fdfccf5d97bd23f9c054f22bde0451a3da0a7bb518bcd95fec6  1.3s
+ => => resolve docker.io/library/python:3.10-slim@sha256:42d13fdfccf5d97bd23f9c054f22bde0451a3da0a7bb518bcd95fec6  0.0s
+ => => sha256:e8c51ac54aa716f465eb7293130535307fcfae9b864e433ca60d843561c86ef6 1.37kB / 1.37kB                     0.0s
+ => => sha256:e4f3ae64bf20e53ef7ba232ff1a0dc634fdc9f7295a0d359369de356e071ab4b 7.68kB / 7.68kB                     0.0s
+ => => sha256:b09d1b343141983429afd7fdf616f53c0c4f4b323ef27f0fa63d1fb6b51972a6 2.64MB / 2.64MB                     0.5s
+ => => sha256:42d13fdfccf5d97bd23f9c054f22bde0451a3da0a7bb518bcd95fec6be89b50d 1.65kB / 1.65kB                     0.0s
+ => => extracting sha256:b09d1b343141983429afd7fdf616f53c0c4f4b323ef27f0fa63d1fb6b51972a6                          0.6s
+ => [2/5] WORKDIR /app                                                                                             0.1s
+ => [3/5] COPY requirements.txt requirements.txt                                                                   0.1s
+ => [4/5] RUN pip3 install -r requirements.txt                                                                     4.3s
+ => [5/5] COPY . .                                                                                                 0.1s
+ => exporting to image                                                                                             0.3s
+ => => exporting layers                                                                                            0.3s
+ => => writing image sha256:14a9d3ce4240f2f20dcf3a2e44bca17e6b27478157f6ed27673762403cb0e92d                       0.0s
+ => => naming to docker.io/library/minireddit2:v1.1                                                                0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
