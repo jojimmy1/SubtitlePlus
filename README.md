@@ -1,1 +1,1 @@
-THis is a ECE49595 project.
+This is a ECE49595 project.
