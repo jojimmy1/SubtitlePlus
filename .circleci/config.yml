@@ -2,8 +2,8 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-orbs: 
-  bandit: arrai/bandit@1.0.0
+orbs:
+  github-super-linter: circleci/github-super-linter@1.0
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -27,9 +27,9 @@ jobs:
                   cd miniReddit
                   ls
                   docker build . -t python-minred:v3.0
-  bandit-check:
-    steps:
-      - bandit
+  lint-code:
+    jobs:
+      - github-super-linter/lint
                   
 
 # Invoke jobs via workflows
@@ -38,4 +38,4 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
-      - bandit-check
+      - lint-code
