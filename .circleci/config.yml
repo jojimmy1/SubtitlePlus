@@ -27,6 +27,9 @@ jobs:
                   cd miniReddit
                   ls
                   docker build . -t python-minred:v3.0
+  bandit-check:
+    steps:
+      - bandit
                   
 
 # Invoke jobs via workflows
@@ -35,4 +38,4 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
-      - bandit
+      - bandit-check
