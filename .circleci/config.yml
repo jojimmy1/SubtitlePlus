@@ -27,9 +27,9 @@ jobs:
                   cd miniReddit
                   ls
                   docker build . -t python-minred:v3.0
-  lint-code:
-    jobs:
-      - github-super-linter/lint
+  # lint-code:
+    # jobs:
+      # - github-super-linter/lint
                   
 
 # Invoke jobs via workflows
@@ -38,4 +38,7 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
-      - lint-code
+      # - lint-code
+  lint-code:
+    jobs:
+      - github-super-linter/lint
