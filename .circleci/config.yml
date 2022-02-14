@@ -4,11 +4,12 @@ version: 2.1
 
 orbs:
   github-super-linter: circleci/github-super-linter@1.0
+  python: circleci/python@1.4.0
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  say-hello:
+  test-docker:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
@@ -27,6 +28,18 @@ jobs:
                   cd miniReddit
                   ls
                   docker build . -t python-minred:v3.0
+  build-and-test:
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: Run tests
+          command: |
+                   cd miniReddit
+                   python -m pytest
   # lint-code:
     # jobs:
       # - github-super-linter/lint
@@ -35,10 +48,13 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  test-docker-workflow:
     jobs:
-      - say-hello
+      - test-docker
       # - lint-code
   lint-code:
     jobs:
       - github-super-linter/lint
+  test-flask:
+    jobs:
+      - build-and-test
