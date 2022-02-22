@@ -1,0 +1,1 @@
+This week, I finished up the word extract from srt file and got the time range for the file. Also, I try to work on a different file. For example, I just started implementing lrc file. I plan to finish it this week. Lastly, I will try to check how to combine my code with the front-end part as well as the unit test for my part.
