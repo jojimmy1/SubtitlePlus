@@ -35,23 +35,36 @@
     </header>
 
     <div id="video1">
-      <button onclick="getCurTime()" type="button">Get current time position</button>
-      <button onclick="setCurTime()" type="button">Set time position to 5 seconds</button><br> 
-
       <video id="myVideo" width="320" height="176" controls>
         <source src="./media/nasa.mp4" type="video/mp4">
       </video>
+
+      <br>
+      <br>
+      <button onclick="getCurTime()" type="button">Set start</button>
+      <button onclick="getCurTime()" type="button">Set end</button>
+      <button onclick="setTime()" type="button">Go To</button>
+      <!-- <button onclick="setCurTime()" type="button">Set time position to 5 seconds</button><br>  -->
 
       <script>
         var vid = document.getElementById("myVideo");
         
         function getCurTime() { 
           alert(vid.currentTime);
+
+          // document.getElementsByName('display_box')[num].value= vid.currentTime;
         } 
         
-        function setCurTime() { 
-          vid.currentTime=5;
+        function setTime() { 
+          var time1 = prompt("Set time to (seconds): ");
+          vid.currentTime=time1;
         } 
+
+        // below for setting time
+        // function set_start(curr) {
+      
+        //     document.getElementsByName('display_box')[num].value= f;
+        // }
         </script> 
     </div>
 
@@ -61,7 +74,7 @@
       <!-- visual -->
               <div class="row" style="margin: 30px 0">
                   <div class="col-sm-10">
-                      <ng-wavesurfer url="../media/demo.wav" wave-color="#337ab7" progress-color="#23527c" height="64">
+                      <ng-wavesurfer url="./media/nasa.mp4" wave-color="#337ab7" progress-color="#23527c" height="64">
                       </ng-wavesurfer>
                   </div>
 
@@ -83,10 +96,10 @@
       <!-- music -->
               <div class="list-group" id="playlist">
                   <a href=""
-                     ng-class="{ 'list-group-item': true, active: isPlaying('../media/demo.wav') }"
-                     ng-click="play('../media/demo.wav')">
+                     ng-class="{ 'list-group-item': true, active: isPlaying('./media/nasa.mp4') }"
+                     ng-click="play('./media/nasa.mp4')">
                       <i class="glyphicon glyphicon-play"></i>
-                      czskamaarù – Trou
+                      Nasa video
                       <span class="badge">0:21</span>
                   </a>
 
