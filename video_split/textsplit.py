@@ -1,5 +1,5 @@
-def subtitle_extract():
-    with open("subtitle.txt", "r") as subtitle_file:
+def subtitle_extract(subtitle_name):
+    with open(subtitle_name, "r") as subtitle_file:
         line = subtitle_file.readlines()
         subtitle_list = [line[i: i + 4] for i in range(0, len(line), 4)]
         subtitle_dict = {}
