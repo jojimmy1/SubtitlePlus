@@ -36,6 +36,16 @@ body {
   font-size: 24px;
 }
 
-#video1 {
-  height: 200px;
-}
+/* #video1 {
+  width: 60%;
+  min-height: 50px;
+  background: #fff;
+  margin: 0 auto;
+  position: relative;
+  top: -150px;
+} */
+/* #myVideo {
+  display: block;
+  margin: 0 auto;
+} */
+
