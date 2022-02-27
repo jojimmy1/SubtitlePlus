@@ -1,5 +1,4 @@
-
-from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
+from moviepy.editor import *
 import re
 def clip_time():
     time_slot = {}
@@ -10,7 +9,7 @@ def clip_time():
             if not line:
                 break
             line = line.strip("\n")
-            pattern = re.compile(r'(\d*)-(\d*)')
+            pattern = re.compile(r'(\d*.\d*)-(\d*.\d*)')
 
             searching = pattern.search(line)
             min_digit = float(searching.group(1))
@@ -22,11 +21,26 @@ def video_split(time_slot):
     for i, j in time_slot.items():
         min_val = j[0]
         max_val = j[1]
-        print(min_val)
-        print(max_val)
         key = str(i)
         target = key + "test.mp4"
-        ffmpeg_extract_subclip("Iamalive.mp4", min_val, max_val, targetname=target)
+        #ffmpeg_extract_subclip("Iamalive.mp4", min_val, max_val, targetname=target)
+        input_video_path = 'Iamalive.mp4'
+        output_video_path = target
+        with VideoFileClip(input_video_path) as video:
+            new = video.subclip(min_val, max_val)
+            new.write_videofile(output_video_path, codec = "libx264")
+    key = int(key)
+    mp4_2_mp3(key)
+def mp4_2_mp3(key):
+    for i in range (1, key + 1):
+        target = str(i) + "test.mp4"
+        video = AudioFileClip(target)
+        video.write_audiofile(str(i) + "test.mp3")
+        video.close()
+
+
+
+
 
 
 

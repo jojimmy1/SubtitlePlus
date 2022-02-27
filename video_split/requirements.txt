@@ -1,0 +1,16 @@
+Pillow~=9.0.1
+pip~=22.0.3
+requests~=2.27.1
+colorama~=0.4.4
+numpy~=1.21.5
+setuptools~=60.8.2
+pysrt~=1.1.2
+chardet~=4.0.0
+certifi~=2021.10.8
+moviepy~=1.0.3
+proglog~=0.1.9
+tqdm~=4.62.3
+imageio~=2.15.0
+decorator~=4.4.2
+idna~=3.3
+urllib3~=1.26.8
