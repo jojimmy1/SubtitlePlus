@@ -17,14 +17,14 @@ def clip_time():
             time_slot[num_of_line] = (min_digit, max_digit)
             num_of_line += 1
     return time_slot
-def video_split(time_slot):
+def video_split(time_slot, video_name):
     for i, j in time_slot.items():
         min_val = j[0]
         max_val = j[1]
         key = str(i)
         target = key + "test.mp4"
         #ffmpeg_extract_subclip("Iamalive.mp4", min_val, max_val, targetname=target)
-        input_video_path = 'Iamalive.mp4'
+        input_video_path = video_name
         output_video_path = target
         with VideoFileClip(input_video_path) as video:
             new = video.subclip(min_val, max_val)

@@ -1,4 +1,4 @@
-#!C:\Users\raychen0212\Desktop\ECE495\Scripts\python.exe
+#!C:\Users\raychen0212\Desktop\SubtitlePlus\video_split\Scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'pysrt==1.1.2','console_scripts','srt'
 import re
 import sys
