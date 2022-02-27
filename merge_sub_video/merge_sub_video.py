@@ -1,7 +1,7 @@
 
 import os
 os.system("ffmpeg -i 1test.mp4 -vf subtitles=1test.srt out.mp4") 
-
+#print('here')
 #import ffmpeg
 #import sys
 #sys.path.append(r'/Users/justinchen/Downloads') # your ffmpeg file path
