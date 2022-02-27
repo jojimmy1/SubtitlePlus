@@ -63,3 +63,27 @@ app.controller('PlaylistController', function($scope) {
         return url == activeUrl;
     };
 });
+
+// add video function
+// $(document).ready(function() { 
+//     var vid = document.getElementById("myVideo");
+
+//     function getCurTime() { 
+//     alert(vid.currentTime);
+//     } 
+
+//     function setCurTime() { 
+//     vid.currentTime=5;
+//     } 
+
+// }); 
+
+// var vid = document.getElementById("myVideo");
+
+// function getCurTime() { 
+//   alert(vid.currentTime);
+// } 
+
+// function setCurTime() { 
+//   vid.currentTime=5;
+// } 

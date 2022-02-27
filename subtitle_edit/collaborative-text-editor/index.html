@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
     <title>Collaborative Text Editor</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet"></link>
@@ -23,17 +24,35 @@
     <script src="https://unpkg.com/wavesurfer.js/dist/wavesurfer.js"></script>
 
     <!-- App -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./js/app1.js"></script>
   </head>
 
 
   <body>
     <header class="header">
-      <h1 class="header__h1">Online Collab Edit</h1>
+      <h1 class="header__h1">Subtitle Plus</h1>
     </header>
-    <div class="doc">
-      <div class="doc__background-ribbon"></div>
-      <div id="doc" class="doc__text-editor"></div>
+
+    <div id="video1">
+      <button onclick="getCurTime()" type="button">Get current time position</button>
+      <button onclick="setCurTime()" type="button">Set time position to 5 seconds</button><br> 
+
+      <video id="myVideo" width="320" height="176" controls>
+        <source src="./media/nasa.mp4" type="video/mp4">
+      </video>
+
+      <script>
+        var vid = document.getElementById("myVideo");
+        
+        function getCurTime() { 
+          alert(vid.currentTime);
+        } 
+        
+        function setCurTime() { 
+          vid.currentTime=5;
+        } 
+        </script> 
     </div>
 
     <!-- below is for waveform -->
@@ -74,6 +93,13 @@
               </div>
           </div>
     <!-- above for waveform -->
+
+    <div class="doc">
+      <div class="doc__background-ribbon"></div>
+      <div id="doc" class="doc__text-editor"></div>
+    </div>
+
+    
     <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
     <script src="/js/app.js"></script>
     <script>
