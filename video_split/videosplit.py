@@ -1,9 +1,9 @@
 from moviepy.editor import *
 import re
-def clip_time():
+def clip_time(input_txt):
     time_slot = {}
     num_of_line = 1
-    with open("time.txt", 'r') as time_file:
+    with open(input_txt, 'r') as time_file:
         while True:
             line = time_file.readline()
             if not line:

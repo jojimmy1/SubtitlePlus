@@ -1,8 +1,8 @@
 import re
-def get_time_srt():
+def get_time_srt(input_txt, output_txt):
 
-  file_object = open("time.txt", "w+")
-  with open("time_text.txt", "r") as timing:
+  file_object = open(output_txt, "w+")
+  with open(input_txt, "r") as timing:
     while True:
       line = timing.readline()
       if not line:
