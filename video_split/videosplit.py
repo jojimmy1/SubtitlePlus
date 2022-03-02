@@ -22,8 +22,7 @@ def video_split(time_slot, video_name):
         min_val = j[0]
         max_val = j[1]
         key = str(i)
-        target = key + "test.mp4"
-        #ffmpeg_extract_subclip("Iamalive.mp4", min_val, max_val, targetname=target)
+        target = "./output/"+key + "test.mp4"
         input_video_path = video_name
         output_video_path = target
         with VideoFileClip(input_video_path) as video:
@@ -33,9 +32,9 @@ def video_split(time_slot, video_name):
     mp4_2_mp3(key)
 def mp4_2_mp3(key):
     for i in range (1, key + 1):
-        target = str(i) + "test.mp4"
+        target = "./output/"+str(i) + "test.mp4"
         video = AudioFileClip(target)
-        video.write_audiofile(str(i) + "test.mp3")
+        video.write_audiofile("./output/"+str(i) + "test.mp3")
         video.close()
 
 
