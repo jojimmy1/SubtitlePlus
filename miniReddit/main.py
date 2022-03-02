@@ -42,6 +42,7 @@ def submit_form():
     if (check1 != []):
         hashcode = check1[0][0]
         url1 = f"/{hashcode}/feed/1"
+        url1 = f"http://localhost:5000/"
         return redirect(url1)
     
     print('Hashcode: ' + str(hashcode))
@@ -54,7 +55,8 @@ def submit_form():
         c.execute('INSERT INTO users VALUES(?, ?, ?, ?,?)', user)
     conn.commit()
     # return "User has been created." # TODO: this should link to Feed page
-    url1 = f"/{hashcode}/feed/1"
+    url1 = f"/{hashcode}/feed/1"    
+    url1 = f"http://localhost:5000/"
     return redirect(url1)
 
 @app.route("/<hashedcode>/create", methods=['GET', 'POST'])
