@@ -75,6 +75,7 @@ def get_authenticated_service(args):
     message=MISSING_CLIENT_SECRETS_MESSAGE)
 
   storage = Storage("%s-oauth2.json" % sys.argv[0])
+  #storage = Storage("%s-oauth2.json" % "upload_vidoe.py")
   credentials = storage.get()
 
   if credentials is None or credentials.invalid:
@@ -155,6 +156,8 @@ def resumable_upload(insert_request):
       print("Sleeping %f seconds and then retrying..." % sleep_seconds)
       time.sleep(sleep_seconds)
 
+
+
 if __name__ == '__main__':
   argparser.add_argument("--file", required=True, help="Video file to upload")
   argparser.add_argument("--title", help="Video title", default="Test Title")
@@ -175,9 +178,10 @@ if __name__ == '__main__':
   youtube = get_authenticated_service(args)
   try:
     initialize_upload(youtube, args)
-    os.remove("%s-oauth2.json" % sys.argv[0])
+    os.remove("%s-oauth2.json" % sys.argv[0]) ## remove the authentication credentials ( can regard as sign out)
   except HttpError as e:
     print("An HTTP error %d occurred:\n%s" % (e.resp.status, e.content))
+
 
 ### Uplaod command:
 '''
