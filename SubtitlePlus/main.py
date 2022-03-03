@@ -122,7 +122,7 @@ def export_submit():
     video_name = "./static/pic/video.mp4" #input data which should be a mp4 file
     # submain(subtitle_name, video_name)
 
-    url1 = f"/export_submit"    
+    url1 = f"/export"    
     return redirect(url1)
 
 @app.route("/<hashedcode>/create", methods=['GET', 'POST'])
