@@ -9,4 +9,4 @@ def submain(subtitle_name, video_name):
     get_time_srt(output_time, output_total_time_in_sec)
     time_slot = clip_time(output_total_time_in_sec)
     video_split(time_slot, video_name)
-    output_subtitle_txt(output_subtitle)
+    output_subtitle_txt(output_subtitle) #output subtitle text
