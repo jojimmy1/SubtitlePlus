@@ -178,7 +178,7 @@ if __name__ == '__main__':
   youtube = get_authenticated_service(args)
   try:
     initialize_upload(youtube, args)
-    os.remove("%s-oauth2.json" % sys.argv[0]) ## remove the authentication credentials ( can regard as sign out)
+    # os.remove("%s-oauth2.json" % sys.argv[0]) ## remove the authentication credentials ( can regard as sign out)
   except HttpError as e:
     print("An HTTP error %d occurred:\n%s" % (e.resp.status, e.content))
 
