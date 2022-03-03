@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel = "stylesheet" href = "../static/styles/tab.css">
+</head>
+<body>
+    <div class="topnav">
+        <a href="http://localhost:5000/?id=private-ntleymiy6">Subtitle Edit</a>
+        <a href="./register">Subtitle Request</a>
+        <a class="active" href="#">Machine Learning Dataset</a>
+        <a href="./export">Merge</a>
+        <a href="./upload">Upload</a>
+    </div>
+
+    <div class="container">
+
+        <br>
+        
+        <h1>Contribute to common voice open source dataset</h1> 
+        
+        <br>
+        
+        <form action="/mldata_submit" method="POST" id = "form" enctype="multipart/form-data">
+			
+            <div class="form-group">
+				<label>Video file</label>
+				<div class="custom-file">
+					<input type="file" class="custom-file-input" name="video" id="video">
+					<!-- <label class="custom-file-label" for="image">Select Image</label> -->
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label>Subtitle file</label>
+				<div class="custom-file">
+					<input type="file" class="custom-file-input" name="subtitle" id="subtitle">
+					<!-- <label class="custom-file-label" for="image">Select Image</label> -->
+				</div>
+			</div>
+
+            <div class="form-group">
+                <button type="submit" value="Submit" class="btn btn-primary">
+                    Submit video and subtitle
+                </button>
+            </div>
+
+        </form>
+        
+
+    </div>
+
+</body>
+</html>
