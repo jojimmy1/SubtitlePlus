@@ -21,5 +21,18 @@ def subtitle_extract(subtitle_name, output_subtitle, output_time):
                 timefile.write("\n")
     textfile.close()
     timefile.close()
+def output_subtitle_txt(text_file):
+    with open(text_file, "r") as text_file:
+        key = 0
+        for line in text_file:
+            key += 1
+            target = "./output/" + str(key) + "subtitle_only_output.txt"
+            final_output = open(target, "w+")
+            final_output.write(line)
+    final_output.close()
+    text_file.close()
+
+
+
 
 
