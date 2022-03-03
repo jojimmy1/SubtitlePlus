@@ -18,9 +18,64 @@ app = flask.Flask(__name__, static_folder='static/')
 def mldata():
     return flask.render_template("mldata.html")
 
+@app.route("/export", methods=['GET','POST'])
+def merge_data():
+    return flask.render_template("export.html")
+
+@app.route("/upload", methods=['GET','POST'])
+def uploadvideo():
+    return flask.render_template("upload.html")
+
 @app.route("/register", methods=['GET','POST'])
 def register():
     return flask.render_template("register.html")
+
+app.config["IMGU"] = "./static/pic"
+@app.route("/createUser", methods=['POST'])
+def submit_form():
+    conn = sqlite3.connect('static/data/database.db')
+    c = conn.cursor()
+    first_name = flask.request.form['fname']
+    last_name = flask.request.form['lname']
+    userID = flask.request.form['userID']
+    hashcode = hash_id(userID)
+    
+    filename1 = '0.jpg'
+    if flask.request.files:
+        print('111111111111111112222222222222')
+        image = flask.request.files["image"]
+        if (image.filename != ''):
+            # filename = id + original file name. Add to database
+            filename1 = userID + image.filename
+            image.save(os.path.join(app.config["IMGU"], filename1))
+    
+    #if same id, link to already exist
+    check1 = (c.execute("SELECT hashcode from users where userID = ?", (userID,)).fetchall())
+    if (check1 != []):
+        hashcode = check1[0][0]
+        url1 = f"/{hashcode}/feed/1"
+        return redirect(url1)
+    
+    print('Hashcode: ' + str(hashcode))
+    
+    if (filename1 != '0.jpg'):
+        user = (first_name, last_name, userID, hashcode,filename1)
+        c.execute('INSERT INTO users VALUES(?, ?, ?, ?,?)', user)
+    else:
+        user = (first_name, last_name, userID, hashcode,filename1)
+        c.execute('INSERT INTO users VALUES(?, ?, ?, ?,?)', user)
+    conn.commit()
+    # return "User has been created." # TODO: this should link to Feed page
+    url1 = f"/{hashcode}/feed/1"    
+    return redirect(url1)
+
+app.config["IMGU"] = "./static/pic"
+@app.route("/upload_submit", methods=['POST'])
+def upload_submit():
+    # call function
+
+    url1 = f"/upload"    
+    return redirect(url1)
 
 # from video_split import getTime
 # from video_split.video_split_submain import *
@@ -46,6 +101,28 @@ def mldata_submit():
     # submain(subtitle_name, video_name)
 
     url1 = f"/mldata"    
+    return redirect(url1)
+
+app.config["IMGU"] = "./static/pic"
+@app.route("/export_submit", methods=['POST'])
+def export_submit():
+    filename1 = 'video.mp4'
+    if flask.request.files:
+        video = flask.request.files["video"]
+        if (video.filename != ''):
+            video.save(os.path.join(app.config["IMGU"], filename1))
+    filename1 = 'subtitle.txt'
+    if flask.request.files:
+        subtitle = flask.request.files["subtitle"]
+        if (subtitle.filename != ''):
+            subtitle.save(os.path.join(app.config["IMGU"], filename1))
+    
+    # call function
+    subtitle_name = "./static/pic/subtitle.txt" #input data which is the srt text file
+    video_name = "./static/pic/video.mp4" #input data which should be a mp4 file
+    # submain(subtitle_name, video_name)
+
+    url1 = f"/export_submit"    
     return redirect(url1)
 
 @app.route("/<hashedcode>/create", methods=['GET', 'POST'])
