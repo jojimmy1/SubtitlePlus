@@ -1,6 +1,6 @@
-from getTime import *
-from videosplit import *
-from textsplit import *
+from video_split.getTime import *
+from video_split.videosplit import *
+from video_split.textsplit import *
 def submain(subtitle_name, video_name):
     output_subtitle = "./middle_file/subtitle_only.txt"  # output data which only contains subtitles
     output_time = "./middle_file/time_only.txt"  # output data which only contains the time range

@@ -81,6 +81,7 @@ def upload_submit():
 # from video_split.video_split_submain import *
 # from video_split.videosplit import *
 # from video_split.textsplit import *
+from video_split.video_split_submain import *
 app.config["IMGU"] = "./static/pic"
 @app.route("/mldata_submit", methods=['POST'])
 def mldata_submit():
@@ -98,7 +99,7 @@ def mldata_submit():
     # call function
     subtitle_name = "./static/pic/subtitle.txt" #input data which is the srt text file
     video_name = "./static/pic/video.mp4" #input data which should be a mp4 file
-    # submain(subtitle_name, video_name)
+    submain(subtitle_name, video_name)
 
     url1 = f"/mldata"    
     return redirect(url1)
