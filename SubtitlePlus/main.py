@@ -1,21 +1,24 @@
+"""
+Python backend. To start the server, do 'python main.py'
+"""
 import flask
 import sqlite3
-# import datetime
 from datetime import datetime
 from datetime import timedelta
 from flask import abort, redirect, url_for, render_template, request, jsonify
 import os
 
-######## HELPERS ############
-def hash_id(id): # Creates 8 digit hashcode (int)
+def hash_id(id):
+    """Creates 8 digit hashcode (int)"""
     return abs(hash(id)) % (10 ** 8)
-#############################
 
 # app = flask.Flask(__name__)
 app = flask.Flask(__name__, static_folder='static/')
+"""Set the static folder"""
 
 @app.route("/mldata", methods=['GET','POST'])
 def mldata():
+    """Render the machine learning dataset extraction front end"""
     return flask.render_template("mldata.html")
 
 @app.route("/export", methods=['GET','POST'])
