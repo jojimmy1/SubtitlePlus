@@ -1,6 +1,7 @@
+"""This file is to get the time line for the srt file. All the time is based on second."""
 import re
 def get_time_srt(input_txt, output_txt):
-
+  """This function will get the time from the srt file and convert it into sescond."""
   file_object = open(output_txt, "w+")
   with open(input_txt, "r") as timing:
     while True:

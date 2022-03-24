@@ -1,4 +1,6 @@
+"""This file will split the text from a srt file. It first will extract the text and time and separate and write it to different file."""
 def subtitle_extract(subtitle_name, output_subtitle, output_time):
+    """This function is to do a text split and write the time and text into different file"""
     with open(subtitle_name, "r") as subtitle_file:
         line = subtitle_file.readlines()
         subtitle_list = [line[i: i + 4] for i in range(0, len(line), 4)]
@@ -21,7 +23,9 @@ def subtitle_extract(subtitle_name, output_subtitle, output_time):
                 timefile.write("\n")
     textfile.close()
     timefile.close()
+
 def output_subtitle_txt(text_file):
+    """This function is outputting the text file"""
     with open(text_file, "r") as text_file:
         key = 0
         for line in text_file:

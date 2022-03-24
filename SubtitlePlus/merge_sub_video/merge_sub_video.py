@@ -1,6 +1,9 @@
+""" Merge video and Subtitle Module"""
 import ffmpeg
 
 def merge_video_subtitle(video_filename, subtitle_filename, output_filename):
+    """ this function merge video and subtitle
+     , input filenames and output filename """
     video = ffmpeg.input(video_filename)
     audio = video.audio
     ffmpeg.concat(video.filter("subtitles", subtitle_filename), audio, v=1, a=1).output(output_filename).run()

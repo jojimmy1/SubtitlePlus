@@ -1,7 +1,9 @@
+"""This file is the submain function for this repository and it will call all the sub function."""
 from video_split.getTime import *
 from video_split.videosplit import *
 from video_split.textsplit import *
 def submain(subtitle_name, video_name):
+    """This function acts like a main function for all sub function."""
     output_subtitle = "./middle_file/subtitle_only.txt"  # output data which only contains subtitles
     output_time = "./middle_file/time_only.txt"  # output data which only contains the time range
     subtitle_extract(subtitle_name, output_subtitle, output_time)

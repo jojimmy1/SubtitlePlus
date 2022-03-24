@@ -1,5 +1,7 @@
 #!/usr/bin/python
-
+"""
+Video Upload (Youtube) module
+"""
 
 import httplib2
 import os
@@ -70,6 +72,7 @@ VALID_PRIVACY_STATUSES = ("public", "private", "unlisted")
 
 
 def get_authenticated_service(args):
+  """ Get authenticated service"""
   flow = flow_from_clientsecrets(CLIENT_SECRETS_FILE,
     scope=YOUTUBE_UPLOAD_SCOPE,
     message=MISSING_CLIENT_SECRETS_MESSAGE)
@@ -85,6 +88,7 @@ def get_authenticated_service(args):
     http=credentials.authorize(httplib2.Http()))
 
 def initialize_upload(youtube, options):
+  """ This function initialize a upload"""
   tags = None
   if options.keywords:
     tags = options.keywords.split(",")
@@ -124,6 +128,7 @@ def initialize_upload(youtube, options):
 # This method implements an exponential backoff strategy to resume a
 # failed upload.
 def resumable_upload(insert_request):
+  """This method implements an exponential backoff strategy to resume a failed upload."""
   response = None
   error = None
   retry = 0

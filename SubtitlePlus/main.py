@@ -23,20 +23,27 @@ def mldata():
 
 @app.route("/export", methods=['GET','POST'])
 def merge_data():
+    """Render the export front end"""
     return flask.render_template("export.html")
 
 @app.route("/upload", methods=['GET','POST'])
 def uploadvideo():
+    """Render upload front end"""
     return flask.render_template("upload.html")
 
 @app.route("/register", methods=['GET','POST'])
 def register():
+    """Render register front end"""
     return flask.render_template("register.html")
 
 app.config["IMGU"] = "./static/pic"
 @app.route("/createUser", methods=['POST'])
 def submit_form():
+    """Gather data from form and write to database."""
+    
     conn = sqlite3.connect('static/data/database.db')
+    """Connect to the sqlite3 database"""
+
     c = conn.cursor()
     first_name = flask.request.form['fname']
     last_name = flask.request.form['lname']
@@ -75,6 +82,8 @@ def submit_form():
 app.config["IMGU"] = "./static/pic"
 @app.route("/upload_submit", methods=['POST'])
 def upload_submit():
+    """Submit the data gathered from front end"""
+    
     # call function
 
     url1 = f"/upload"    
@@ -88,6 +97,7 @@ from video_split.video_split_submain import *
 app.config["IMGU"] = "./static/pic"
 @app.route("/mldata_submit", methods=['POST'])
 def mldata_submit():
+    """Process the videos and subtitles to generate machine learning dataset"""
     filename1 = 'video.mp4'
     if flask.request.files:
         video = flask.request.files["video"]
@@ -110,6 +120,7 @@ def mldata_submit():
 app.config["IMGU"] = "./static/pic"
 @app.route("/export_submit", methods=['POST'])
 def export_submit():
+    """Process the data necessary for exporting the videos"""
     filename1 = 'video.mp4'
     if flask.request.files:
         video = flask.request.files["video"]
@@ -131,6 +142,7 @@ def export_submit():
 
 @app.route("/<hashedcode>/create", methods=['GET', 'POST'])
 def create_post(hashedcode):
+    """Create a request for each user"""
     conn = sqlite3.connect('./static/data/database.db')
     c = conn.cursor()
     
@@ -140,6 +152,7 @@ def create_post(hashedcode):
 
 @app.route("/create_done", methods=['POST'])
 def create_post_done():
+    """Write the request into database"""
     conn = sqlite3.connect('./static/data/database.db')
     c = conn.cursor()
     
@@ -178,6 +191,7 @@ def create_post_done():
 # read post
 @app.route("/posts/<postid>/<hashedcode>", methods=['GET', 'POST'])
 def display2(postid,hashedcode):
+    """Read the request created"""
     postid = str(postid)
     conn = sqlite3.connect('./static/data/database.db')
     c = conn.cursor()
@@ -230,6 +244,7 @@ def display2(postid,hashedcode):
 # Profile page using pagination
 @app.route("/<hashedcode>/profile/<pagenum>", methods=['GET', 'POST'])
 def profilePagination(hashedcode, pagenum): 
+    """Set the pagination for the requests created by current user"""
     db_dict = {}
     conn = sqlite3.connect('static/data/database.db')
     c = conn.cursor()
@@ -316,6 +331,7 @@ def profilePagination(hashedcode, pagenum):
 # Feed page using pagination
 @app.route("/<hashedcode>/feed/<pagenum>", methods=['GET', 'POST'])
 def feedpagePagination(hashedcode, pagenum): 
+    """Set the pagination for the requests created by other user"""
     db_dict = {}
     conn = sqlite3.connect('static/data/database.db')
     c = conn.cursor()
@@ -364,6 +380,7 @@ def feedpagePagination(hashedcode, pagenum):
 
 @app.route('/vote', methods=['POST'])
 def vote1():
+    """Upvote and downvote for a request"""
     conn = sqlite3.connect('static/data/database.db')
     c = conn.cursor()
     userid = flask.request.form['userid']
@@ -407,6 +424,7 @@ def vote1():
 
 @app.route('/delete', methods=['POST'])
 def delete1():
+    """Delete a request"""
     print('hiiiiiiiii')
     conn = sqlite3.connect('static/data/database.db')
     c = conn.cursor()
