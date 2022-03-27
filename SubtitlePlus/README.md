@@ -140,7 +140,37 @@ Description: This function implements an exponential backoff strategy to resume 
 ### merge_sub_video.py
 
 - API: /merge_video_subtitle
-Description: This function merge video and subtitle, input filenames and output filename
+Description: This function merge video and subtitle, input filenames and output filename.
+
+## Video Split
+
+### getTime.py
+
+- API: /get_time_srt
+Description: This function will get the time from the srt file and convert it into sescond.
+
+### textsplit.py
+- API: /subtitle_extract
+Description: This function is to do a text split and write the time and text into different file
+
+- API: /output_subtitle_txt
+Description: This function is outputting the text file.
+
+### video_split_submain.py
+
+- API: /submain
+Description: This function acts like a main function for all sub function.
+
+### videosplit.py
+
+- API: /clip_time
+Description: This function is to clip the time based on the srt file. It will create a list of tuple which contains the lower bound of the time and the upper bound of the clock.
+
+- API: /video_split
+Description: This function will generate the mp4 file.
+
+- API: /mp4_2_mp3
+Description: This function will convert mp4 file to mp3 file.
 
 ## Credit
 
@@ -149,4 +179,6 @@ Description: This function merge video and subtitle, input filenames and output 
 - Collaborative editing supported by Pusher API, used code from: https://github.com/ankeetmaini/collaborative-text-editor
 
 - Waveform supported by: https://github.com/katspaugh/wavesurfer.js
+
+
 
