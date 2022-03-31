@@ -74,16 +74,18 @@ VALID_PRIVACY_STATUSES = ("public", "private", "unlisted")
 def get_authenticated_service(args):
   """ Get authenticated service"""
   flow = flow_from_clientsecrets(CLIENT_SECRETS_FILE,
-    scope=YOUTUBE_UPLOAD_SCOPE,
+    scope=[YOUTUBE_UPLOAD_SCOPE],
     message=MISSING_CLIENT_SECRETS_MESSAGE)
-
+  print('here1')
   storage = Storage("%s-oauth2.json" % sys.argv[0])
+  print('here2')
   #storage = Storage("%s-oauth2.json" % "upload_vidoe.py")
   credentials = storage.get()
+  print('here3')
 
   if credentials is None or credentials.invalid:
     credentials = run_flow(flow, storage, args)
-
+  print('here4')
   return build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
     http=credentials.authorize(httplib2.Http()))
 
