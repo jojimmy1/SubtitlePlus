@@ -1,7 +1,7 @@
 import re
 def get_time_srt(input_txt, output_txt):
 
-  file_object = open(output_txt, "w+")
+  #file_object = open(output_txt, "w+")
   with open(input_txt, "r") as timing:
     while True:
       line = timing.readline()
@@ -28,7 +28,7 @@ def get_time_srt(input_txt, output_txt):
       end_time_mili2sec = end_milisecond / 1000
       end_total_second = str(end_time_hour2sec + end_time_min2sec + end_time_mili2sec + end_second)
       output = start_total_second + "-" + end_total_second
-      file_object.write(output)
-      file_object.write("\n")
+      #file_object.write(output)
+      #file_object.write("\n")
 
 

@@ -1,3 +1,4 @@
+"""The main function for video split"""
 from video_split_submain import *
 if __name__ == '__main__':
     subtitle_name = "./input/subtitle.txt" #input data which is the srt text file
