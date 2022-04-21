@@ -18,6 +18,7 @@ def clip_time(input_txt):
             num_of_line += 1
     return time_slot
 def video_split(time_slot, video_name):
+    key = 0
     for i, j in time_slot.items():
         min_val = j[0]
         max_val = j[1]
