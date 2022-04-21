@@ -1,4 +1,5 @@
 """This file will split the text from a srt file. It first will extract the text and time and separate and write it to different file."""
+import os
 def subtitle_extract(subtitle_name, output_subtitle, output_time):
     """This function is to do a text split and write the time and text into different file"""
     with open(subtitle_name, "r") as subtitle_file:

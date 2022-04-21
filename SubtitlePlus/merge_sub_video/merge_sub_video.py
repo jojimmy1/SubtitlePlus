@@ -8,7 +8,7 @@ def merge_video_subtitle(video_filename, subtitle_filename, output_filename):
     audio = video.audio
     ffmpeg.concat(video.filter("subtitles", subtitle_filename), audio, v=1, a=1).output(output_filename).run()
 
-
+merge_video_subtitle("./1test.mp4", "./1test.srt", "newout.mp4")
 '''
 video = ffmpeg.input('1test.mp4')
 audio = video.audio
