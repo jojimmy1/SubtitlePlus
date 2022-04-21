@@ -121,17 +121,18 @@ app.config["IMGU"] = "./static/pic"
 @app.route("/export_submit", methods=['POST'])
 def export_submit():
     """Process the data necessary for exporting the videos"""
-    # filename1 = 'video.mp4'
-    # if flask.request.files:
-    #     video = flask.request.files["video"]
-    #     if (video.filename != ''):
-    #         video.save(os.path.join(app.config["IMGU"], filename1))
-    # filename1 = 'subtitle.txt'
-    # if flask.request.files:
-    #     subtitle = flask.request.files["subtitle"]
-    #     if (subtitle.filename != ''):
-    #         subtitle.save(os.path.join(app.config["IMGU"], filename1))
+    filename1 = 'video.mp4'
+    if flask.request.files:
+        video = flask.request.files["video"]
+        if (video.filename != ''):
+            video.save(os.path.join(app.config["IMGU"], filename1))
+    filename1 = 'subtitle.txt'
+    if flask.request.files:
+        subtitle = flask.request.files["subtitle"]
+        if (subtitle.filename != ''):
+            subtitle.save(os.path.join(app.config["IMGU"], filename1))
     
+    # Merge the video and subtitle
     # call function
     subtitle_name = "./static/pic/subtitle.txt" #input data which is the srt text file
     video_name = "./static/pic/video.mp4" #input data which should be a mp4 file
