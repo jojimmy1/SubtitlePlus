@@ -49,3 +49,25 @@ body {
   margin: 0 auto;
 } */
 
+/* below for timing textbox */
+#sub1{  
+  width: 60%;
+  min-height: 50px;
+  background: #fff;
+  margin: 0 auto;
+  position: relative;
+  top: -150px;
+  font-size: 24px;
+}
+
+.float-container {
+  border: 3px solid #fff;
+  padding: 20px;
+}
+
+.float-child {
+  width: 50%;
+  float: left;
+  padding: 20px;
+  border: 2px solid red;
+} 

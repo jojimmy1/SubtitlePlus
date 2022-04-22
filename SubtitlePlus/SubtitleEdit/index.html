@@ -88,11 +88,35 @@
         // }
 
         window.onload = function(){
-          document.getElementById("doc").onkeydown = e => {
+          document.getElementById("sub1").onkeydown = e => {
           if (e.key === "Alt") typeInTextarea(returnCurTime());
           }
         }
-        </script> 
+        
+        /////////////////////////////////////
+        // expand text box
+        $(document)
+            .one('focus.textarea', '.autoExpand', function(){
+                var savedValue = this.value;
+                this.value = '';
+                this.baseScrollHeight = this.scrollHeight;
+                this.value = savedValue;
+            })
+            .on('input.textarea', '.autoExpand', function(){
+                var minRows = this.getAttribute('data-min-rows')|0,
+                    rows;
+                this.rows = minRows;
+                rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 16);
+                this.rows = minRows + rows;
+            });
+
+        function updateTextbox(text) {
+          $('#cagetextbox').val(text);
+        };
+
+        updateTextbox("");
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     </div>
 
     <!-- below is for waveform -->
@@ -135,9 +159,11 @@
     <!-- above for waveform -->
 
     <div class="doc">
-      <div class="doc__background-ribbon"></div>
-      <!-- <div id="doc" class="doc__text-editor"></div> -->
-      <input id="doc" class="doc__text-editor" />
+      <!-- <div class="doc__background-ribbon"></div> -->
+      <div id="doc" class="doc__text-editor"></div>
+      <!-- <textarea type="text" id="sub1" class="doc__text-editor"></textarea> -->
+      <textarea id="sub1" class='autoExpand' rows='3' data-min-rows='3' placeholder='Timing'></textarea>
+      <!-- <textarea id="sub1" class='doc__text-editor' rows='3' data-min-rows='3' placeholder='Timing'></textarea> -->
     </div>
 
     
