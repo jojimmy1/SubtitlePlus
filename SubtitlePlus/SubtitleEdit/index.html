@@ -51,7 +51,7 @@
     </header> -->
 
     <div id="video1">
-      <video id="myVideo" width="320" height="176" controls>
+      <video id="myVideo" width="640" height="352" controls>
         <source src="./media/nasa.mp4" type="video/mp4">
       </video>
 
@@ -113,6 +113,21 @@
                 this.value = savedValue;
             })
             .on('input.textarea', '.autoExpand', function(){
+                var minRows = this.getAttribute('data-min-rows')|0,
+                    rows;
+                this.rows = minRows;
+                rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 16);
+                this.rows = minRows + rows;
+            });
+        
+        $(document)
+            .one('focus.textarea', '.autoExpand1', function(){
+                var savedValue = this.value;
+                this.value = '';
+                this.baseScrollHeight = this.scrollHeight;
+                this.value = savedValue;
+            })
+            .on('input.textarea', '.autoExpand1', function(){
                 var minRows = this.getAttribute('data-min-rows')|0,
                     rows;
                 this.rows = minRows;
@@ -186,7 +201,7 @@
       
       <div class="float-child">
         <h5>End time</h5> 
-        <textarea id="sub2" class='autoExpand' rows='3' data-min-rows='3' placeholder='Timing'></textarea>
+        <textarea id="sub2" class='autoExpand1' rows='3' data-min-rows='3' placeholder='Timing'></textarea>
       </div>
 
       <div class="float-child">
