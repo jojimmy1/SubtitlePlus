@@ -50,8 +50,7 @@
 
       <br>
       <br>
-      <button onclick="getCurTime()" type="button">Set start</button>
-      <button onclick="getCurTime()" type="button">Set end</button>
+      <button onclick="getCurTime()" type="button">Get Time</button>
       <button onclick="setTime()" type="button">Go To</button>
       <!-- <button onclick="setCurTime()" type="button">Set time position to 5 seconds</button><br>  -->
 
@@ -89,6 +88,10 @@
 
         window.onload = function(){
           document.getElementById("sub1").onkeydown = e => {
+          if (e.key === "Alt") typeInTextarea(returnCurTime());
+          }
+
+          document.getElementById("sub2").onkeydown = e => {
           if (e.key === "Alt") typeInTextarea(returnCurTime());
           }
         }
@@ -158,12 +161,29 @@
           </div>
     <!-- above for waveform -->
 
-    <div class="doc">
+    <!-- <div class="doc"> -->
       <!-- <div class="doc__background-ribbon"></div> -->
-      <div id="doc" class="doc__text-editor"></div>
+      <!-- <div id="doc" class="doc__text-editor"></div> -->
+
       <!-- <textarea type="text" id="sub1" class="doc__text-editor"></textarea> -->
-      <textarea id="sub1" class='autoExpand' rows='3' data-min-rows='3' placeholder='Timing'></textarea>
-      <!-- <textarea id="sub1" class='doc__text-editor' rows='3' data-min-rows='3' placeholder='Timing'></textarea> -->
+      <!-- <textarea id="sub1" class='autoExpand' rows='3' data-min-rows='3' placeholder='Timing'></textarea> -->
+    <!-- </div> -->
+
+    <!-- below some test for div -->
+    <div class="float-container">
+
+      <div class="float-child">
+        <textarea id="sub1" class='autoExpand' rows='3' data-min-rows='3' placeholder='Timing'></textarea>
+      </div>
+      
+      <div class="float-child">
+        <textarea id="sub2" class='autoExpand' rows='3' data-min-rows='3' placeholder='Timing'></textarea>
+      </div>
+
+      <div class="float-child">
+        <div id="doc" class="doc__text-editor"></div>
+      </div>
+      
     </div>
 
     

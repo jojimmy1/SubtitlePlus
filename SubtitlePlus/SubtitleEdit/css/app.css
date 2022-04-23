@@ -25,16 +25,16 @@ body {
   background: #3F51B5;
 }
 
-.doc .doc__text-editor {
+/* .doc .doc__text-editor {
   width: 60%;
-  /* padding: 40px 28px; */
   min-height: 50px;
   background: #fff;
   margin: 0 auto;
   position: relative;
   top: -150px;
   font-size: 24px;
-}
+} */
+
 
 /* #video1 {
   width: 60%;
@@ -49,16 +49,7 @@ body {
   margin: 0 auto;
 } */
 
-/* below for timing textbox */
-#sub1{  
-  width: 60%;
-  min-height: 50px;
-  background: #fff;
-  margin: 0 auto;
-  position: relative;
-  top: -150px;
-  font-size: 24px;
-}
+
 
 .float-container {
   border: 3px solid #fff;
@@ -66,8 +57,44 @@ body {
 }
 
 .float-child {
-  width: 50%;
+  top: -150px;
+  width: 30%;
   float: left;
   padding: 20px;
   border: 2px solid red;
 } 
+
+/* below for timing textbox */
+#sub1{  
+  width: 70%;
+  /* height: 50px; */
+  min-height: 200px;
+  background: #fff;
+  margin: 0 auto;
+  /* position: relative; */
+  top: -150px;
+  font-size: 24px;
+}
+
+#sub2{  
+  width: 70%;
+  /* height: 50px; */
+  min-height: 200px;
+  background: #fff;
+  margin: 0 auto;
+  /* position: relative; */
+  top: -150px;
+  font-size: 24px;
+}
+
+.doc__text-editor {
+  width: 70%;
+  /* height: 50px; */
+  min-height: 200px;
+  background: #fff;
+  margin: 0 auto;
+  /* position: relative; */
+  top: -150px;
+  font-size: 24px;
+  border: 2px solid black;
+}
