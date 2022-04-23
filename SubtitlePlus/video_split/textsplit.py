@@ -31,7 +31,7 @@ def output_subtitle_txt(text_file):
         key = 0
         for line in text_file:
             key += 1
-            target = "./output/" + str(key) + "subtitle_only_output.txt"
+            target = "./serverfile/output/" + str(key) + "subtitle_only_output.txt"
             final_output = open(target, "w+")
             final_output.write(line)
     final_output.close()

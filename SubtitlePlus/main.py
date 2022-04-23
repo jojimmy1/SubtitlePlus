@@ -9,6 +9,8 @@ from datetime import timedelta
 import time
 from flask import abort, redirect, url_for, render_template, request, jsonify, send_file
 import os
+import glob
+import shutil
 
 from video_split.video_split_submain import *
 
@@ -90,9 +92,17 @@ def oneclick_done():
     # return send_file('./serverfile/oneclick.srt',as_attachment=True)
 
     # Split for ML dataset
-    subtitle_name = "./server/subtitle.txt" #input data which is the srt text file
-    video_name = "./server/video.mp4" #input data which should be a mp4 file
+    # Need to clean the output before that
+    # files = glob.glob('./serverfile/output')
+    # for f in files:
+    #     os.remove(f)
+    shutil.rmtree('./serverfile/output')
+    os.mkdir('./serverfile/output')
+    subtitle_name = "./serverfile/oneclick.srt" #input data which is the srt text file
+    video_name = "./serverfile/video.mp4" #input data which should be a mp4 file
     submain(subtitle_name, video_name)
+    # Zip the folder
+    shutil.make_archive("./serverfile/MLdata", 'zip', './serverfile/output')
     
     return "Yes" # Download the files from new webpage, can select what to download
 

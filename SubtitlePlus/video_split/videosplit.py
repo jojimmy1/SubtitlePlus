@@ -26,7 +26,7 @@ def video_split(time_slot, video_name):
         min_val = j[0]
         max_val = j[1]
         key = str(i)
-        target = "./output/"+key + "test.mp4"
+        target = "./serverfile/output/"+key + "test.mp4"
         input_video_path = video_name
         output_video_path = target
         with VideoFileClip(input_video_path) as video:
@@ -38,9 +38,9 @@ def video_split(time_slot, video_name):
 def mp4_2_mp3(key):
     """This function will convert mp4 file to mp3 file"""
     for i in range (1, key + 1):
-        target = "./output/"+str(i) + "test.mp4"
+        target = "./serverfile/output/"+str(i) + "test.mp4"
         video = AudioFileClip(target)
-        video.write_audiofile("./output/"+str(i) + "test.mp3")
+        video.write_audiofile("./serverfile/output/"+str(i) + "test.mp3")
         video.close()
 
 
