@@ -1,10 +1,12 @@
 """
 Python backend. To start the server, do 'python main.py'
 """
+from unicodedata import decimal
 import flask
 import sqlite3
 from datetime import datetime
 from datetime import timedelta
+import time
 from flask import abort, redirect, url_for, render_template, request, jsonify
 import os
 
@@ -35,6 +37,49 @@ def uploadvideo():
 def register():
     """Render register front end"""
     return flask.render_template("register.html")
+
+@app.route("/oneclick", methods=['GET','POST'])
+def oneclick():
+    """Render register front end"""
+    return flask.render_template("oneclick.html")
+
+
+def getSRT(startime, endtime, content):
+    """Iterate over each line, return new string"""
+    starlist = startime.splitlines()
+    endlist = endtime.splitlines()
+    conlist = content.splitlines()
+    if (len(starlist) == len(endlist)) and (len(starlist) == len(conlist)):
+        pass
+    else:
+        return "ERROR: The number of lines in the 3 strings doesn't match."
+    
+    res = ""
+    for i in range(len(starlist)):
+        star = int(float(starlist[i]))
+        end = int(float(endlist[i]))
+        con = conlist[i]
+        star = time.strftime('%H:%M:%S', time.gmtime(star)) + ",000"
+        end = time.strftime('%H:%M:%S', time.gmtime(end)) + ",000"
+        inter = f'{i+1}\n' + star + f' --> ' + end + f'\n' + con + f'\n\n'
+        res += inter
+    return res
+
+@app.route("/oneclick_done", methods=['POST'])
+def oneclick_done():
+    """Get things done in one click"""
+    
+    #capture info
+    startime = flask.request.form['startime']
+    endtime = flask.request.form['endtime']
+    content = flask.request.form['content']
+    
+    # Generate srt files from string
+    srtString = getSRT(startime, endtime, content)
+    with open('./serverfile/oneclick.srt', 'w') as f:
+        f.write(srtString)
+
+    return "Yes" # Download the files from here
 
 app.config["IMGU"] = "./static/pic"
 @app.route("/createUser", methods=['POST'])

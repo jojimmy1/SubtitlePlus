@@ -61,7 +61,7 @@ body {
   width: 30%;
   float: left;
   padding: 20px;
-  border: 2px solid red;
+  border: 2px solid rgb(43, 177, 171);
 } 
 
 /* below for timing textbox */
@@ -74,6 +74,7 @@ body {
   /* position: relative; */
   top: -150px;
   font-size: 24px;
+  border: 2px solid black;
 }
 
 #sub2{  
@@ -85,10 +86,11 @@ body {
   /* position: relative; */
   top: -150px;
   font-size: 24px;
+  border: 2px solid black;
 }
 
 .doc__text-editor {
-  width: 70%;
+  width: 100%;
   /* height: 50px; */
   min-height: 200px;
   background: #fff;
@@ -97,4 +99,5 @@ body {
   top: -150px;
   font-size: 24px;
   border: 2px solid black;
+  float: left;
 }
