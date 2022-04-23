@@ -361,7 +361,11 @@ def profilePagination(hashedcode, pagenum):
         totalsec = daysec + diff1.seconds
         half60 = totalsec / 60 / 60
         half30 = 0.5*round(half60/0.5)
-        db_dict.update({(element[0],element[2]): (element[1],element[3],half30)})
+
+        newVoteCount = "Closed"
+        if element[3] == 0:
+            newVoteCount = "Open"
+        db_dict.update({(element[0],element[2]): (element[1],newVoteCount,half30)})
     print(db_dict)
     
     ######################
