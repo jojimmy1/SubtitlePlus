@@ -9,54 +9,6 @@
 
 	<title>Read Post Webpage</title>
 	
-	<script>
-$(document).ready(function() { 
-		$('#hi1').on('submit',function(event) { 
-			$.ajax({
-			data : {
-				userid : $('#id11').val(),
-				count1 : $('#count11').val(),
-				postid : $('#post11').val()
-			},
-			type : 'POST',
-			url : '/vote'
-		})
-		.done(function(data) {
-
-			if (data.error) {
-				alert("You have alreday voted.")
-			}
-			else {
-				$("#vote00").text(data.count);
-			}
-		});
-
-		event.preventDefault();
-	}); 
-		$('#hi2').on('submit',function(event) { 
-			$.ajax({
-			data : {
-				userid : $('#id22').val(),
-				count1 : $('#count22').val(),
-				postid : $('#post22').val()
-			},
-			type : 'POST',
-			url : '/vote'
-		})
-		.done(function(data) {
-
-			if (data.error) {
-				alert("You have alreday voted.")
-			}
-			else {
-				$("#vote00").text(data.count);
-			}
-		});
-
-		event.preventDefault();
-	});
-}); 
-</script>
 <style>
 	h1 {
 		white-space: nowrap;
@@ -111,7 +63,7 @@ $(document).ready(function() {
 	</div>
 	<div class="container">
 	<p>Time: {{half30}} hour(s) ago</p>
-	<p>Vote count:</p>
+	<!-- <p>Vote count:</p>
 	<p id='vote00'>{{count99}}</p>
 		<p><form id='hi1' class="form-inline">
 			<input type="hidden" id="id11" name="id11" value={{hashedcode}}>
@@ -123,7 +75,8 @@ $(document).ready(function() {
 			<input type="hidden" id="post22" name="post22" value={{postid}}>
 			<input type="hidden" id="count22" name="count22" value=-1>
 			<button type="submit">Downvote</button>
-		</form></p>
+		</form></p> -->
+
 	<!-- <table> -->
 
 	  <!-- <tr> -->

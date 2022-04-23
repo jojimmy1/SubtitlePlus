@@ -472,6 +472,122 @@ def feedpagePagination(hashedcode, pagenum):
         i1 = i1 + 1
     return flask.render_template('view3.html',dict2 = dict2, data = db_dict, hashedcode = hashedcode, name2 = name2, pagenum = pagenum)
 
+# Check open request
+@app.route("/<hashedcode>/feed/<pagenum>/open", methods=['GET', 'POST'])
+def openrequest(hashedcode, pagenum): 
+    """Set the pagination for the requests created by other user"""
+    db_dict = {}
+    conn = sqlite3.connect('static/data/database.db')
+    c = conn.cursor()
+    
+    #get id
+    id = (c.execute("SELECT * from users where hashcode = ?", (hashedcode,)).fetchall())
+    # list of tuple
+    id = id[0][2]
+    
+    name1 = (c.execute("SELECT first_name,last_name from users WHERE userID = ?", (id,)).fetchall())
+    name2 = name1[0][0] + ' ' + name1[0][1]
+    print(name2)
+
+    offset = (int(pagenum) - 1) * 5
+
+    # Modified AND condition
+    fetchall = (c.execute("SELECT title,content,post_id,vote_count,create_time from posts WHERE userID != ? AND vote_count == 0 ORDER BY create_time DESC LIMIT 5 OFFSET ?", (id,offset)).fetchall())
+    # fetchall = (c.execute("SELECT title,content,post_id,vote_count,create_time from posts WHERE userID != ? ORDER BY create_time DESC LIMIT 5 OFFSET ?", (id,offset)).fetchall())
+    for element in (fetchall):
+        timeget = datetime.strptime(element[4], "%Y-%m-%d %H:%M:%S.%f")
+        now1 = datetime.now()
+        diff1 = now1 - timeget
+        daysec = 24 * 60 * 60 * (diff1.days)
+        totalsec = daysec + diff1.seconds
+        half60 = totalsec / 60 / 60
+        half30 = 0.5*round(half60/0.5)
+        
+        newVoteCount = "Closed"
+        if element[3] == 0:
+            newVoteCount = "Open"
+        db_dict.update({(element[0],element[2]): (element[1],newVoteCount,half30)})
+    print(db_dict)
+    
+    # Modified AND condition
+    fetchall = (c.execute("SELECT title,content,post_id from posts WHERE userID != ? AND vote_count == 0 ORDER BY create_time DESC", (id,)).fetchall())
+    # fetchall = (c.execute("SELECT title,content,post_id from posts WHERE userID != ? ORDER BY create_time DESC", (id,)).fetchall())
+    count1 = 0
+    for element in (fetchall):
+        count1 = count1 + 1
+    totalpage = count1 / 5
+    totalpage = round(totalpage)
+    if (totalpage * 5 < count1):
+        totalpage = totalpage + 1
+    print(111111111111111111111111111)
+    print(count1)
+    
+    dict2 ={}
+    i1 = totalpage + 1
+    # i1=9
+    while i1 <= 10:
+        dict2.update({i1+999: i1})
+        i1 = i1 + 1
+    return flask.render_template('viewopen.html',dict2 = dict2, data = db_dict, hashedcode = hashedcode, name2 = name2, pagenum = pagenum)
+
+# Check closed request
+@app.route("/<hashedcode>/feed/<pagenum>/closed", methods=['GET', 'POST'])
+def closedrequest(hashedcode, pagenum): 
+    """Set the pagination for the requests created by other user"""
+    db_dict = {}
+    conn = sqlite3.connect('static/data/database.db')
+    c = conn.cursor()
+    
+    #get id
+    id = (c.execute("SELECT * from users where hashcode = ?", (hashedcode,)).fetchall())
+    # list of tuple
+    id = id[0][2]
+    
+    name1 = (c.execute("SELECT first_name,last_name from users WHERE userID = ?", (id,)).fetchall())
+    name2 = name1[0][0] + ' ' + name1[0][1]
+    print(name2)
+
+    offset = (int(pagenum) - 1) * 5
+
+    # Modified AND condition
+    fetchall = (c.execute("SELECT title,content,post_id,vote_count,create_time from posts WHERE userID != ? AND vote_count == 1 ORDER BY create_time DESC LIMIT 5 OFFSET ?", (id,offset)).fetchall())
+    # fetchall = (c.execute("SELECT title,content,post_id,vote_count,create_time from posts WHERE userID != ? ORDER BY create_time DESC LIMIT 5 OFFSET ?", (id,offset)).fetchall())
+    for element in (fetchall):
+        timeget = datetime.strptime(element[4], "%Y-%m-%d %H:%M:%S.%f")
+        now1 = datetime.now()
+        diff1 = now1 - timeget
+        daysec = 24 * 60 * 60 * (diff1.days)
+        totalsec = daysec + diff1.seconds
+        half60 = totalsec / 60 / 60
+        half30 = 0.5*round(half60/0.5)
+        
+        newVoteCount = "Closed"
+        if element[3] == 0:
+            newVoteCount = "Open"
+        db_dict.update({(element[0],element[2]): (element[1],newVoteCount,half30)})
+    print(db_dict)
+    
+    # Modified AND condition
+    fetchall = (c.execute("SELECT title,content,post_id from posts WHERE userID != ? AND vote_count == 1 ORDER BY create_time DESC", (id,)).fetchall())
+    # fetchall = (c.execute("SELECT title,content,post_id from posts WHERE userID != ? ORDER BY create_time DESC", (id,)).fetchall())
+    count1 = 0
+    for element in (fetchall):
+        count1 = count1 + 1
+    totalpage = count1 / 5
+    totalpage = round(totalpage)
+    if (totalpage * 5 < count1):
+        totalpage = totalpage + 1
+    print(111111111111111111111111111)
+    print(count1)
+    
+    dict2 ={}
+    i1 = totalpage + 1
+    # i1=9
+    while i1 <= 10:
+        dict2.update({i1+999: i1})
+        i1 = i1 + 1
+    return flask.render_template('viewclosed.html',dict2 = dict2, data = db_dict, hashedcode = hashedcode, name2 = name2, pagenum = pagenum)
+
 @app.route('/vote', methods=['POST'])
 def vote1():
     """Upvote and downvote for a request"""
