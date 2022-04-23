@@ -22,6 +22,11 @@ def hash_id(id):
 app = flask.Flask(__name__, static_folder='static/')
 """Set the static folder"""
 
+@app.route("/", methods=['GET','POST'])
+def frontpage():
+    """Front page when user visit the website"""
+    return "Now at front page"
+
 @app.route("/mldata", methods=['GET','POST'])
 def mldata():
     """Render the machine learning dataset extraction front end"""
@@ -428,6 +433,8 @@ def feedpagePagination(hashedcode, pagenum):
 
     offset = (int(pagenum) - 1) * 5
 
+    # Modified AND condition
+    # fetchall = (c.execute("SELECT title,content,post_id,vote_count,create_time from posts WHERE userID != ? AND vote_count == 0 ORDER BY create_time DESC LIMIT 5 OFFSET ?", (id,offset)).fetchall())
     fetchall = (c.execute("SELECT title,content,post_id,vote_count,create_time from posts WHERE userID != ? ORDER BY create_time DESC LIMIT 5 OFFSET ?", (id,offset)).fetchall())
     for element in (fetchall):
         timeget = datetime.strptime(element[4], "%Y-%m-%d %H:%M:%S.%f")
@@ -437,9 +444,15 @@ def feedpagePagination(hashedcode, pagenum):
         totalsec = daysec + diff1.seconds
         half60 = totalsec / 60 / 60
         half30 = 0.5*round(half60/0.5)
-        db_dict.update({(element[0],element[2]): (element[1],element[3],half30)})
+        
+        newVoteCount = "Closed"
+        if element[3] == 0:
+            newVoteCount = "Open"
+        db_dict.update({(element[0],element[2]): (element[1],newVoteCount,half30)})
     print(db_dict)
     
+    # Modified AND condition
+    # fetchall = (c.execute("SELECT title,content,post_id from posts WHERE userID != ? AND vote_count == 0 ORDER BY create_time DESC", (id,)).fetchall())
     fetchall = (c.execute("SELECT title,content,post_id from posts WHERE userID != ? ORDER BY create_time DESC", (id,)).fetchall())
     count1 = 0
     for element in (fetchall):
@@ -468,15 +481,12 @@ def vote1():
     count1 = flask.request.form['count1']
     postid = flask.request.form['postid']
     
-    
     id = (c.execute("SELECT userID from users where hashcode = ?", (userid,)).fetchall())
     userid = id[0][0]
-    # print(userid,count1,postid)
-    # return jsonify({'error' : 'Nope!'})
     
-    check1 = (c.execute("SELECT post_id from vote where userID = ? AND post_id = ?", (userid,postid)).fetchall())
-    if (check1 != []):
-        return jsonify({'error' : 'Already voted!'})
+    # check1 = (c.execute("SELECT post_id from vote where userID = ? AND post_id = ?", (userid,postid)).fetchall())
+    # if (check1 != []):
+    #     return jsonify({'error' : 'Already voted!'})
     
     time1 = datetime.now()
     time1 = str(time1)
@@ -496,12 +506,19 @@ def vote1():
     newcount = (c.execute("SELECT vote_count from posts where post_id = ?", (postid,)).fetchall())
     newcount = newcount[0][0]
     newcount = newcount + count1
+    if (newcount > 1):
+        return jsonify({'error' : 'Request already accepted.'})
+    if (newcount < 0):
+        return jsonify({'error' : 'Request was not accepted and can not be canceled.'})
     
     set1 = (newcount,postid)
     c.execute('UPDATE posts SET vote_count = ? WHERE post_id = ?', set1)
     conn.commit()
     conn.close()
-    return jsonify({'count' : newcount})
+    new_newcount = "Closed"
+    if newcount == 0:
+        new_newcount = "Open"
+    return jsonify({'count' : new_newcount})
 
 @app.route('/delete', methods=['POST'])
 def delete1():
@@ -532,4 +549,8 @@ def delete1():
 if __name__ == '__main__':
     # Start the server
     # app.run(port=8001, host='127.0.0.1', debug=True, use_evalex=False)
-    app.run(port=8001, host='0.0.0.0', debug=True, use_evalex=False)
+
+    # Below is the one used for docker
+    # app.run(port=8001, host='0.0.0.0', debug=True, use_evalex=False)
+
+    app.run(port=80, host='0.0.0.0', debug=True, use_evalex=False)

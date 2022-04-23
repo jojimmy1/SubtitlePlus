@@ -1,3 +1,5 @@
+C:\linux\subPlus\Scripts\activate.bat
+
 #sub1{  
   width: 100px;
   height: 50px;
