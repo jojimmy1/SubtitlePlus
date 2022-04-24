@@ -15,7 +15,8 @@ def merge_video_subtitle(video_filename, subtitle_filename, output_filename,scal
 
     ffmpeg.concat(video.filter("subtitles", subtitle_filename), audio, v=1, a=1).output(output_filename).run()
 
-merge_video_subtitle('1test.mp4','1test.srt','out1.mp4',fps=5,scale_w=1080,scale_h=480)
+# how to call this function:
+# merge_video_subtitle('1test.mp4','1test.srt','out1.mp4',fps=5,scale_w=1080,scale_h=480)
 '''
 video = ffmpeg.input('1test.mp4')
 audio = video.audio
