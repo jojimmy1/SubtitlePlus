@@ -1,0 +1,81 @@
+hi everyone this is um ray
+uh and this is the demonstration for
+lab24ec568
+[Music]
+uh as you can see
+uh
+this the red line right here connects is
+the three
+three volts can connect to the plus sign
+and this line is connected to the other
+other side of the
+the um
+charge and this uh orange line is
+connect is the ground which connects to
+the ground for the breadboard and the
+same as this line is connected to the
+other ground
+and this is the red led i'm using
+um is connected to
+ping 13 right now
+and
+that's a little bit of the um
+of the um
+breadboard connection um this is the um
+esp client
+and let me run the code real quick
+so it will start running the code um and
+it will first bring out the uh which
+connected to which connected to my wi-fi
+right now and the ip address is the
+following and wait for around 30 seconds
+and you will start printing out
+and
+the data out
+yep and right now it's bringing the
+first data which is the temperature
+on the hull sensor right now
+and that's the second one
+as you can see right here
+is printing out the um
+the first date as well
+um just wait for it to print on this
+second one
+yeah right now it's showing the second
+one right now
+waiting for it to bring this third one
+yep that's pretty third one right now
+it's printing every 30 seconds
+wait for it another one
+yep let's bring the other one
+so that's the demo for the um
+for for the first esp client and
+i'll put the rest of the data on the png
+files
+next i'd like to show you the esp server
+demo
+let me quickly run this code real quick
+so as you can see is connected to my
+wi-fi right now
+and let me copy this address real quick
+see
+this control v
+so let's move to this web page
+click okay
+and it's showing that the um is the web
+server right now
+next i'll show you the rare led current
+state right now so if we click on
+the on
+it will show the reality led is showing
+on right now
+if we click on the off one
+then the red led is currently off
+so let's demo again
+red led on
+is on right now
+reality off
+is off right now
+so
+that's all for my demo
+thank you everyone thank you so much

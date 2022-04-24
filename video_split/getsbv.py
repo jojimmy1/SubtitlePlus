@@ -7,7 +7,6 @@ def sbv_extract(subtitle_name, output_subtitle, output_time):
             pattern_time = re.compile(r'(\d*):(\d*):(\d*.\d*),(\d*):(\d*):(\d*.\d*)')
             pattern_script = re.compile(r'(.+)')
             time_search = pattern_time.search(line)
-            print(time_search)
             script_search = pattern_script.search(line)
             if(time_search != None):
                 start_hour = float(time_search.group(1))

@@ -1,0 +1,243 @@
+0:00:01.120,0:00:06.720
+hi everyone this is um ray
+
+0:00:04.160,0:00:07.840
+uh and this is the demonstration for
+
+0:00:06.720,0:00:09.920
+lab24ec568
+
+0:00:07.840,0:00:11.759
+[Music]
+
+0:00:09.920,0:00:12.719
+uh as you can see
+
+0:00:11.759,0:00:15.920
+uh
+
+0:00:12.719,0:00:16.880
+this the red line right here connects is
+
+0:00:15.920,0:00:20.480
+the three
+
+0:00:16.880,0:00:23.680
+three volts can connect to the plus sign
+
+0:00:20.480,0:00:25.439
+and this line is connected to the other
+
+0:00:23.680,0:00:26.640
+other side of the
+
+0:00:25.439,0:00:30.640
+the um
+
+0:00:26.640,0:00:33.120
+charge and this uh orange line is
+
+0:00:30.640,0:00:35.920
+connect is the ground which connects to
+
+0:00:33.120,0:00:38.079
+the ground for the breadboard and the
+
+0:00:35.920,0:00:39.360
+same as this line is connected to the
+
+0:00:38.079,0:00:43.040
+other ground
+
+0:00:39.360,0:00:45.440
+and this is the red led i'm using
+
+0:00:43.040,0:00:48.000
+um is connected to
+
+0:00:45.440,0:00:49.200
+ping 13 right now
+
+0:00:48.000,0:00:51.760
+and
+
+0:00:49.200,0:00:53.039
+that's a little bit of the um
+
+0:00:51.760,0:00:57.120
+of the um
+
+0:00:53.039,0:00:59.120
+breadboard connection um this is the um
+
+0:00:57.120,0:01:02.320
+esp client
+
+0:00:59.120,0:01:05.280
+and let me run the code real quick
+
+0:01:02.320,0:01:07.680
+so it will start running the code um and
+
+0:01:05.280,0:01:11.119
+it will first bring out the uh which
+
+0:01:07.680,0:01:13.119
+connected to which connected to my wi-fi
+
+0:01:11.119,0:01:16.640
+right now and the ip address is the
+
+0:01:13.119,0:01:19.200
+following and wait for around 30 seconds
+
+0:01:16.640,0:01:20.000
+and you will start printing out
+
+0:01:19.200,0:01:23.640
+and
+
+0:01:20.000,0:01:23.640
+the data out
+
+0:01:36.320,0:01:41.439
+yep and right now it's bringing the
+
+0:01:37.840,0:01:45.799
+first data which is the temperature
+
+0:01:41.439,0:01:45.799
+on the hull sensor right now
+
+0:01:57.280,0:02:00.640
+and that's the second one
+
+0:02:04.479,0:02:09.360
+as you can see right here
+
+0:02:06.960,0:02:11.599
+is printing out the um
+
+0:02:09.360,0:02:15.120
+the first date as well
+
+0:02:11.599,0:02:17.760
+um just wait for it to print on this
+
+0:02:15.120,0:02:17.760
+second one
+
+0:02:18.800,0:02:23.720
+yeah right now it's showing the second
+
+0:02:20.319,0:02:23.720
+one right now
+
+0:02:33.840,0:02:38.239
+waiting for it to bring this third one
+
+0:02:48.879,0:02:52.800
+yep that's pretty third one right now
+
+0:02:55.280,0:02:58.959
+it's printing every 30 seconds
+
+0:03:01.920,0:03:05.840
+wait for it another one
+
+0:03:21.519,0:03:27.920
+yep let's bring the other one
+
+0:03:24.640,0:03:31.920
+so that's the demo for the um
+
+0:03:27.920,0:03:35.920
+for for the first esp client and
+
+0:03:31.920,0:03:37.040
+i'll put the rest of the data on the png
+
+0:03:35.920,0:03:39.599
+files
+
+0:03:37.040,0:03:41.680
+next i'd like to show you the esp server
+
+0:03:39.599,0:03:46.440
+demo
+
+0:03:41.680,0:03:46.440
+let me quickly run this code real quick
+
+0:03:48.720,0:03:53.439
+so as you can see is connected to my
+
+0:03:51.120,0:03:58.000
+wi-fi right now
+
+0:03:53.439,0:03:58.000
+and let me copy this address real quick
+
+0:03:58.159,0:04:01.159
+see
+
+0:04:01.200,0:04:05.519
+this control v
+
+0:04:02.799,0:04:07.040
+so let's move to this web page
+
+0:04:05.519,0:04:10.239
+click okay
+
+0:04:07.040,0:04:11.599
+and it's showing that the um is the web
+
+0:04:10.239,0:04:14.080
+server right now
+
+0:04:11.599,0:04:16.880
+next i'll show you the rare led current
+
+0:04:14.080,0:04:18.320
+state right now so if we click on
+
+0:04:16.880,0:04:21.440
+the on
+
+0:04:18.320,0:04:22.880
+it will show the reality led is showing
+
+0:04:21.440,0:04:26.479
+on right now
+
+0:04:22.880,0:04:29.680
+if we click on the off one
+
+0:04:26.479,0:04:31.600
+then the red led is currently off
+
+0:04:29.680,0:04:34.320
+so let's demo again
+
+0:04:31.600,0:04:37.360
+red led on
+
+0:04:34.320,0:04:37.360
+is on right now
+
+0:04:37.759,0:04:41.440
+reality off
+
+0:04:39.840,0:04:42.800
+is off right now
+
+0:04:41.440,0:04:44.800
+so
+
+0:04:42.800,0:04:48.880
+that's all for my demo
+
+0:04:44.800,0:04:48.880
+thank you everyone thank you so much
+
