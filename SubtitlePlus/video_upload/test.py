@@ -46,7 +46,7 @@ def index():
 def test_api_request():
   if 'credentials' not in flask.session:
     return flask.redirect('authorize')
-
+  
   # Load credentials from the session.
   credentials = google.oauth2.credentials.Credentials(
       **flask.session['credentials'])
@@ -96,7 +96,8 @@ def test_api_request():
   flask.session['credentials'] = credentials_to_dict(credentials)
 
   #return flask.jsonify(**files)
-  return 'hello'
+  return ('Video uploaded!!'+print_index_table())
+  
 def resumable_upload(insert_request):
   """This method implements an exponential backoff strategy to resume a failed upload."""
   response = None
