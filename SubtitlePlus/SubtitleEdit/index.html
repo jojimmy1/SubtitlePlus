@@ -95,11 +95,11 @@
 
         window.onload = function(){
           document.getElementById("sub1").onkeydown = e => {
-          if (e.key === "Alt") typeInTextarea(returnCurTime());
+          if (e.key === "Alt") typeInTextarea(returnCurTime() + "\n");
           }
 
           document.getElementById("sub2").onkeydown = e => {
-          if (e.key === "Alt") typeInTextarea(returnCurTime());
+          if (e.key === "Alt") typeInTextarea(returnCurTime() + "\n");
           }
         }
         
