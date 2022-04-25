@@ -259,7 +259,7 @@ def print_index_table():
 @app.route("/", methods=['GET','POST'])
 def frontpage():
     """Front page when user visit the website"""
-    return "Now at front page"
+    return flask.render_template("frontpage.html")
 
 @app.route("/mldata", methods=['GET','POST'])
 def mldata():
