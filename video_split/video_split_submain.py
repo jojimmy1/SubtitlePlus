@@ -8,9 +8,9 @@ def submain(subtitle_name, video_name, file_format = 0):
     if(file_format == 0):
         subtitle_extract(subtitle_name, output_subtitle, output_time_in_sec)
     elif(file_format == 1):
-        lrc_extract("./serverfile/input/example.txt", output_subtitle, output_time_in_sec)
+        lrc_extract(subtitle_name, output_subtitle, output_time_in_sec)
     elif(file_format == 2):
-        sbv_extract("./serverfile/input/examplesbv.txt", output_subtitle, output_time_in_sec)
+        sbv_extract(subtitle_name, output_subtitle, output_time_in_sec)
     time_slot = clip_time(output_time_in_sec)
     video_split(time_slot, video_name)
     output_subtitle_txt(output_subtitle) #output subtitle text
