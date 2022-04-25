@@ -44,41 +44,61 @@
         <p class="lead font-weight-normal">A integrated tool that helps subtitle group makes subtitle so that audience from around the world can watch those fantastic videos.</p>
         <a class="btn btn-outline-secondary" href="/oneclick">Try our demo!</a>
       </div>
-      <!-- <div class="product-device box-shadow d-none d-md-block"></div> -->
-      <!-- <div class="product-device product-device-2 box-shadow d-none d-md-block"></div> -->
+      <div class="product-device box-shadow d-none d-md-block" style="color:white;">
+        <br><img src="{{ url_for('static', filename='../static/pic/chat.jpg') }}" alt="logo" style="width:279px;height:400px;">
+        <br>
+      </div>
+      <div class="product-device product-device-2 box-shadow d-none d-md-block" style="color:black;">
+        <br><br><br><br><br><br><br><br><br>
+        <img src="{{ url_for('static', filename='../static/pic/logo.jpg') }}" alt="logo" style="width:240px;height:84px;">
+        <h4>Make subtitle creation process easier with one simple click.</h4>
+      </div>
     </div>
 
     <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
       <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
         <div class="my-3 py-3">
-          <h2 class="display-5">Another headline</h2>
-          <p class="lead">And an even wittier subheading.</p>
+          <h2 class="display-5">Avoid copyright issue</h2>
+          <p class="lead">You can directly talk to the original content creator from here</p>
         </div>
-        <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">Hi there</div>
+        <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;color:black;">
+          <br>
+          <img src="{{ url_for('static', filename='../static/pic/order.jpg') }}" alt="logo" style="width:90%;height:90%;">
+        </div>
       </div>
       <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
         <div class="my-3 p-3">
-          <h2 class="display-5">Another headline</h2>
-          <p class="lead">And an even wittier subheading.</p>
+          <h2 class="display-5">Highly integrated</h2>
+          <p class="lead">ONE click, and we'll take care of the rest</p>
         </div>
-        <div class="bg-dark box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+        <div class="bg-dark box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;color:white;">
+          <h4>Don't have a high performance computer for merging?</h4>
+          <h4>Not having enough member in your group to accomplish the different task?</h4>
+          <h4>Don't worry, we're here to help. With our high performance computing resources on the cloud, things have never been easier than just one simple click!</h4>
+        </div>
       </div>
     </div>
 
     <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
       <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
         <div class="my-3 p-3">
-          <h2 class="display-5">Another headline</h2>
-          <p class="lead">And an even wittier subheading.</p>
+          <h2 class="display-5">Collaborative Editing</h2>
+          <p class="lead">Now you don't have to wait, let's edit together</p>
         </div>
-        <div class="bg-dark box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+        <div class="bg-dark box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;color:white;">
+          <h4>Collaboration matters the most. Together, we can produce high quality content!</h4>
+          <img src="{{ url_for('static', filename='../static/pic/collaboration.jpg') }}" alt="logo" style="width:70%;height:70%;">
+        </div>
       </div>
       <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
         <div class="my-3 py-3">
-          <h2 class="display-5">Another headline</h2>
-          <p class="lead">And an even wittier subheading.</p>
+          <h2 class="display-5">Contribute to the future</h2>
+          <p class="lead">Generate dataset for machine learning</p>
         </div>
-        <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+        <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;color:black;">
+          <h4>The Machine Learning community will appreciate your contribution.</h4>
+          <img src="{{ url_for('static', filename='../static/pic/common.jpg') }}" alt="logo" style="width:80%;height:80%;">
+        </div>
       </div>
     </div>
 
@@ -125,39 +145,37 @@
         <div class="col-6 col-md">
           <h5>Features</h5>
           <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="#">Cool stuff</a></li>
-            <li><a class="text-muted" href="#">Random feature</a></li>
-            <li><a class="text-muted" href="#">Team feature</a></li>
-            <li><a class="text-muted" href="#">Stuff for developers</a></li>
-            <li><a class="text-muted" href="#">Another one</a></li>
-            <li><a class="text-muted" href="#">Last time</a></li>
+            <li><a class="text-muted" href="/oneclick">One Click</a></li>
+            <li><a class="text-muted" href="/register">Subtitle Request</a></li>
+            <li><a class="text-muted" href="/mldata">Machine Learning Dataset</a></li>
+            <li><a class="text-muted" href="/export">Merge</a></li>
+            <li><a class="text-muted" href="/upload">Upload</a></li>
           </ul>
         </div>
         <div class="col-6 col-md">
-          <h5>Resources</h5>
+          <h5>ML resources</h5>
           <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="#">Resource</a></li>
-            <li><a class="text-muted" href="#">Resource name</a></li>
-            <li><a class="text-muted" href="#">Another resource</a></li>
-            <li><a class="text-muted" href="#">Final resource</a></li>
+            <li><a class="text-muted" href="https://commonvoice.mozilla.org/en">Common Voice</a></li>
+            <li><a class="text-muted" href="https://research.google.com/colaboratory/">Google Colab</a></li>
+            <li><a class="text-muted" href="https://www.kaggle.com/">Kaggle</a></li>
           </ul>
         </div>
         <div class="col-6 col-md">
-          <h5>Resources</h5>
+          <h5>Thanks to</h5>
           <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="#">Business</a></li>
-            <li><a class="text-muted" href="#">Education</a></li>
-            <li><a class="text-muted" href="#">Government</a></li>
-            <li><a class="text-muted" href="#">Gaming</a></li>
+            <li><a class="text-muted" href="https://getbootstrap.com/">Bootstrap</a></li>
+            <li><a class="text-muted" href="https://github.com/ankeetmaini/collaborative-text-editor">Online Collaboration Text Editor</a></li>
+            <li><a class="text-muted" href="https://pusher.com/">Pusher</a></li>
+            <li><a class="text-muted" href="https://cloud.google.com/">Google Cloud</a></li>
+            <li><a class="text-muted" href="https://github.com/Aegisub/Aegisub">Aegisub</a></li>
           </ul>
         </div>
         <div class="col-6 col-md">
           <h5>About</h5>
           <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="#">Team</a></li>
-            <li><a class="text-muted" href="#">Locations</a></li>
-            <li><a class="text-muted" href="#">Privacy</a></li>
-            <li><a class="text-muted" href="#">Terms</a></li>
+            <li><a class="text-muted" href="/team">Team</a></li>
+            <li><a class="text-muted" href="/loc">Locations</a></li>
+            <li><a class="text-muted" href="/license0">License</a></li>
           </ul>
         </div>
       </div>

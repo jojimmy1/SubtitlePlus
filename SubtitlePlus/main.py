@@ -261,6 +261,42 @@ def frontpage():
     """Front page when user visit the website"""
     return flask.render_template("frontpage.html")
 
+@app.route("/team", methods=['GET','POST'])
+def team():
+    """Team info"""
+    return """Jimmy, Ray, Justin. Built in Spring 2022.
+            Thanks for the support from Professor and ECE49595 course staffs."""
+
+@app.route("/loc", methods=['GET','POST'])
+def loc():
+    """Location"""
+    return "Purdue University"
+
+@app.route("/license0", methods=['GET','POST'])
+def license0():
+    """License"""
+    return """MPL-2.0
+            new BSD License
+            BSD-2-Clause
+            ISC
+            GPLv3
+            LGPL
+            PSF
+            Apache-2.0 license
+            MIT License
+            BSD 3-Clause License or Apache License, Version 2.0
+            MIT
+            HPND
+            3-Clause BSD License
+            MPLv2.0, MIT Licences
+            BSD-3-Clause
+            Apache-2.0
+            BSD-2-Clause or Apache-2.0
+            Apache 2.0
+            MIT - copyright Edinburgh Genome Foundry
+            BSD
+            """
+
 @app.route("/mldata", methods=['GET','POST'])
 def mldata():
     """Render the machine learning dataset extraction front end"""
