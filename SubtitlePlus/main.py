@@ -281,7 +281,7 @@ def uploadvideo():
 @app.route("/register", methods=['GET','POST'])
 def register():
     """Render register front end"""
-    return flask.render_template("register.html")
+    return flask.render_template("register1.html")
 
 @app.route("/oneclick", methods=['GET','POST'])
 def oneclick():
@@ -449,13 +449,12 @@ def submit_form():
     hashcode = hash_id(userID)
     
     filename1 = '0.jpg'
-    if flask.request.files:
-        print('111111111111111112222222222222')
-        image = flask.request.files["image"]
-        if (image.filename != ''):
-            # filename = id + original file name. Add to database
-            filename1 = userID + image.filename
-            image.save(os.path.join(app.config["IMGU"], filename1))
+    # if flask.request.files:
+    #     image = flask.request.files["image"]
+    #     if (image.filename != ''):
+    #         # filename = id + original file name. Add to database
+    #         filename1 = userID + image.filename
+    #         image.save(os.path.join(app.config["IMGU"], filename1))
     
     #if same id, link to already exist
     check1 = (c.execute("SELECT hashcode from users where userID = ?", (userID,)).fetchall())
