@@ -544,15 +544,20 @@ def mldata_submit():
         if (subtitle.filename != ''):
             subtitle.save(os.path.join(app.config['UPLOAD_FOLDER'], filename1))
     
-    # call function
-    # subtitle_name = "./static/pic/subtitle.txt" #input data which is the srt text file
-    # video_name = "./static/pic/video.mp4" #input data which should be a mp4 file
-    # submain(subtitle_name, video_name)
+    # Split for ML dataset
+    # Need to clean the output before that
+    shutil.rmtree('./serverfile/output')
+    os.mkdir('./serverfile/output')
+    subtitle_name = "./serverfile/subtitle.txt" #input data which is the srt text file
+    video_name = "./serverfile/video.mp4" #input data which should be a mp4 file
+    submain(subtitle_name, video_name)
+    # Zip the folder
+    shutil.make_archive("./serverfile/MLdata", 'zip', './serverfile/output')
 
-    url1 = f"/mldata"    
+    url1 = f"/downloadml"    
     return redirect(url1)
 
-app.config["IMGU"] = "./static/pic"
+app.config['UPLOAD_FOLDER'] = "./serverfile"
 @app.route("/export_submit", methods=['POST'])
 def export_submit():
     """Process the data necessary for exporting the videos"""
@@ -560,20 +565,22 @@ def export_submit():
     if flask.request.files:
         video = flask.request.files["video"]
         if (video.filename != ''):
-            video.save(os.path.join(app.config["IMGU"], filename1))
+            video.save(os.path.join(app.config['UPLOAD_FOLDER'], filename1))
     filename1 = 'subtitle.txt'
     if flask.request.files:
         subtitle = flask.request.files["subtitle"]
         if (subtitle.filename != ''):
-            subtitle.save(os.path.join(app.config["IMGU"], filename1))
+            subtitle.save(os.path.join(app.config['UPLOAD_FOLDER'], filename1))
     
     # Merge the video and subtitle
     # call function
-    subtitle_name = "./static/pic/subtitle.txt" #input data which is the srt text file
-    video_name = "./static/pic/video.mp4" #input data which should be a mp4 file
-    submain(subtitle_name, video_name)
+    # Do the merging (require ffmpeg)
+    width0 = convert_non_blank_int(flask.request.form['width0'])
+    height0 = convert_non_blank_int(flask.request.form['height0'])
+    fps0 = convert_non_blank_int(flask.request.form['fps0'])
+    merge_video_subtitle("./serverfile/video.mp4", "./serverfile/subtitle.txt", "./serverfile/merged.mp4",width0, height0, fps0)
 
-    url1 = f"/export"    
+    url1 = f"/downloadmerged"    
     return redirect(url1)
 
 @app.route("/<hashedcode>/create", methods=['GET', 'POST'])
@@ -697,8 +704,6 @@ def profilePagination(hashedcode, pagenum):
     totalpage = round(totalpage)
     if (totalpage * 5 < count1):
         totalpage = totalpage + 1
-    print(111111111111111111111111111)
-    print(count1)
     
     dict9 ={}
     i1 = totalpage + 1
@@ -756,8 +761,6 @@ def feedpagePagination(hashedcode, pagenum):
     totalpage = round(totalpage)
     if (totalpage * 5 < count1):
         totalpage = totalpage + 1
-    print(111111111111111111111111111)
-    print(count1)
     
     dict2 ={}
     i1 = totalpage + 1
@@ -814,8 +817,6 @@ def openrequest(hashedcode, pagenum):
     totalpage = round(totalpage)
     if (totalpage * 5 < count1):
         totalpage = totalpage + 1
-    print(111111111111111111111111111)
-    print(count1)
     
     dict2 ={}
     i1 = totalpage + 1
