@@ -65,20 +65,53 @@
             </div>
 
             <div class="form-group">
-              <label for="description">Title</label>
-              <textarea rows="1" class="form-control" name="title1" id="title1"></textarea>
+                <label for="title">Title</label>
+                <input type="text" class="form-control" name="title" id="title" />
             </div>
 
             <div class="form-group">
-              <label for="description">Description</label>
-              <textarea rows="5" class="form-control" name="descirbe1" id="descirbe1"></textarea>
+                <label for="descr">Description</label>
+                <!-- <input type="text" class="form-control" name="descr" id="descr" /> -->
+                <textarea rows="5" class="form-control" name="descr" id="descr"></textarea>
             </div>
+
+            <div class="form-group">
+                <label for="tags">Tags (separate with comma, leave blank if not needed)</label>
+                <input type="text" class="form-control" name="tags" id="tags" />
+            </div>
+
+            <label for="category">Choose a category</label>
+            <select name="category" id="category">
+                <option value="1">Film & Animation</option>
+                <option value="2">Autos & Vehicles</option>
+                <option value="10">Music</option>
+                <option value="15">Pets & Animals</option>
+            </select>
+
+            <label for="priv">Privacy</label>
+            <select name="priv" id="priv">
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+                <option value="unlisted">Unlisted</option>
+            </select>
+
+            <div class="form-group">
+                <label for="sche">Schedule publish time (will set privacy to private, leave blank if not needed)</label>
+                <input type="text" class="form-control" name="sche" id="sche" value="2022-11-01T8:20:00.000+00:00"/>
+            </div>
+			
+			<div class="form-group">
+				<label>(Optional)Select video</label>
+				<div class="custom-file">
+					<input type="file" class="custom-file-input" name="video" id="video">
+				</div>
+			</div>
             
             <input type="hidden" id="id2" name="id2" value={{hashedcode}}>
             
             <div class="form-group">
                 <button type="submit" value="Submit" class="btn btn-primary">
-                    ONE click
+                    ONE click!
                 </button>
             </div>
 

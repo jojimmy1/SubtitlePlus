@@ -1,6 +1,7 @@
 """
 Python backend. To start the server, do 'python main.py'
 """
+from pydoc import describe
 from unicodedata import decimal
 import flask
 import sqlite3
@@ -53,48 +54,61 @@ API_SERVICE_NAME = 'youtube'
 API_VERSION = 'v3'
 app.secret_key = 'REPLACE ME - this value is here as a placeholder.'
 
-@app.route('/test')
+app.config['UPLOAD_FOLDER'] = "./serverfile"
+@app.route('/upload_done', methods=['GET','POST'])
 def test_api_request():
+    filename1 = 'merged.mp4'
+    if flask.request.files:
+        video = flask.request.files["video"]
+        if (video.filename != ''):
+            video.save(os.path.join(app.config['UPLOAD_FOLDER'], filename1))
+
+    title0 = flask.request.form['title']
+    descr0 = flask.request.form['descr']
+    tags0 = flask.request.form['tags']
+    category0 = int(flask.request.form['category'])
+    priv0 = flask.request.form['priv']
+    sche0 = flask.request.form['sche']
     if 'credentials' not in flask.session:
         return flask.redirect('authorize')
 
     # Load credentials from the session.
     credentials = google.oauth2.credentials.Credentials(**flask.session['credentials'])
     youtube = build(API_SERVICE_NAME, API_VERSION, credentials=credentials)
-    tags = None
-
-    body_time=dict(
-    snippet=dict(
-        title='hello justin cc',
-        description='this is a test',
-        tags=tags,
-        categoryId=22
-    ),
-    status=dict(
-        privacyStatus='private',
-        publishAt = '2022-11-01T8:20:00.000+00:00'
-    )
-    )
-
-    body_notime=dict(
-    snippet=dict(
-        title='New title',
-        description='this is a test',
-        tags=tags,
-        categoryId=22
-    ),
-    status=dict(
-        privacyStatus='public'
-    )
-    )
-
-    body = body_notime
+    if tags0 == "":
+        tags0 = None
+    body = None
+    if sche0 == "":
+        body=dict(
+        snippet=dict(
+            title=title0,
+            description=descr0,
+            tags=tags0,
+            categoryId=category0
+        ),
+        status=dict(
+            privacyStatus=priv0
+        )
+        )
+    else:
+        body=dict(
+        snippet=dict(
+            title=title0,
+            description=descr0,
+            tags=tags0,
+            categoryId=category0
+        ),
+        status=dict(
+            privacyStatus='private',
+            publishAt = sche0
+        )
+        )
 
     # Call the API's videos.insert method to create and upload the video.
     insert_request = youtube.videos().insert(
     part=",".join(body.keys()),
     body=body,
-    media_body=MediaFileUpload("./kkvid.mp4", chunksize=-1, resumable=True)
+    media_body=MediaFileUpload("./serverfile/merged.mp4", chunksize=-1, resumable=True)
     )
     # resumable_upload(insert_request)
     # Save credentials back to session in case access token was refreshed.

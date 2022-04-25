@@ -32,23 +32,47 @@
         
         <br>
         
-        <form action="/upload_submit" method="POST" id = "form" enctype="multipart/form-data">
-
+        <form action="/upload_done" method="POST" id = "form" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="fname">Title</label>
-                <input type="text" class="form-control" name="fname" id="fname" />
+                <label for="title">Title</label>
+                <input type="text" class="form-control" name="title" id="title" />
             </div>
 
             <div class="form-group">
-                <label for="lname">Description</label>
-                <input type="text" class="form-control" name="lname" id="lname" />
+                <label for="descr">Description</label>
+                <!-- <input type="text" class="form-control" name="descr" id="descr" /> -->
+                <textarea rows="5" class="form-control" name="descr" id="descr"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="tags">Tags (separate with comma, leave blank if not needed)</label>
+                <input type="text" class="form-control" name="tags" id="tags" />
+            </div>
+
+            <label for="category">Choose a category</label>
+            <select name="category" id="category">
+                <option value="1">Film & Animation</option>
+                <option value="2">Autos & Vehicles</option>
+                <option value="10">Music</option>
+                <option value="15">Pets & Animals</option>
+            </select>
+
+            <label for="priv">Privacy</label>
+            <select name="priv" id="priv">
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+                <option value="unlisted">Unlisted</option>
+            </select>
+
+            <div class="form-group">
+                <label for="sche">Schedule publish time (will set privacy to private, leave blank if not needed)</label>
+                <input type="text" class="form-control" name="sche" id="sche" value="2022-11-01T8:20:00.000+00:00"/>
             </div>
 			
 			<div class="form-group">
 				<label>(Optional)Select video</label>
 				<div class="custom-file">
-					<input type="file" class="custom-file-input" name="image" id="image">
-					<!-- <label class="custom-file-label" for="image">Select Image</label> -->
+					<input type="file" class="custom-file-input" name="video" id="video">
 				</div>
 			</div>
 
