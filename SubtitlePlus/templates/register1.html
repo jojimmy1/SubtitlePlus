@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <!-- <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico"> -->
 
-    <title>Signin Template for Bootstrap</title>
+    <title>SubtitlePlus</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
 
@@ -20,7 +20,10 @@
 
   <body class="text-center">
     <form class="form-signin" action="/createUser" method="POST" id = "form" enctype="multipart/form-data">
-      <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+      <!-- <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
+      <a href="/">
+        <img src="{{ url_for('static', filename='../static/pic/logo.jpg') }}" alt="logo" style="width:240px;height:84px;">
+      </a>
       <h1 class="h3 mb-3 font-weight-normal">Please register/sign in</h1>
       
 	  <label for="fname" class="sr-only">First Name</label>
