@@ -13,6 +13,22 @@ import glob
 import shutil
 import ffmpeg
 
+# Below for video upload
+import requests
+import google.oauth2.credentials
+import google_auth_oauthlib.flow
+import googleapiclient.discovery
+import httplib2
+import random
+import sys
+from apiclient.discovery import build
+from apiclient.errors import HttpError
+from apiclient.http import MediaFileUpload
+from oauth2client.client import flow_from_clientsecrets
+from oauth2client.file import Storage
+from oauth2client.tools import argparser, run_flow
+# Above for video upload
+
 from video_split.video_split_submain import *
 
 def hash_id(id):
@@ -29,6 +45,180 @@ def merge_video_subtitle(video_filename, subtitle_filename, output_filename):
 # app = flask.Flask(__name__)
 app = flask.Flask(__name__, static_folder='static/')
 """Set the static folder"""
+
+# Below for video upload
+CLIENT_SECRETS_FILE = "client_secrets.json"
+SCOPES = [ 'https://www.googleapis.com/auth/youtube.upload']
+API_SERVICE_NAME = 'youtube'
+API_VERSION = 'v3'
+app.secret_key = 'REPLACE ME - this value is here as a placeholder.'
+
+@app.route('/test')
+def test_api_request():
+    if 'credentials' not in flask.session:
+        return flask.redirect('authorize')
+
+    # Load credentials from the session.
+    credentials = google.oauth2.credentials.Credentials(**flask.session['credentials'])
+    youtube = build(API_SERVICE_NAME, API_VERSION, credentials=credentials)
+    tags = None
+
+    body_time=dict(
+    snippet=dict(
+        title='hello justin cc',
+        description='this is a test',
+        tags=tags,
+        categoryId=22
+    ),
+    status=dict(
+        privacyStatus='private',
+        publishAt = '2022-11-01T8:20:00.000+00:00'
+    )
+    )
+
+    body_notime=dict(
+    snippet=dict(
+        title='New title',
+        description='this is a test',
+        tags=tags,
+        categoryId=22
+    ),
+    status=dict(
+        privacyStatus='public'
+    )
+    )
+
+    body = body_notime
+
+    # Call the API's videos.insert method to create and upload the video.
+    insert_request = youtube.videos().insert(
+    part=",".join(body.keys()),
+    body=body,
+    media_body=MediaFileUpload("./kkvid.mp4", chunksize=-1, resumable=True)
+    )
+    # resumable_upload(insert_request)
+    # Save credentials back to session in case access token was refreshed.
+    # ACTION ITEM: In a production app, you likely want to save these
+    #              credentials in a persistent database instead.
+    flask.session['credentials'] = credentials_to_dict(credentials)
+    return 'Video uploaded'
+
+def resumable_upload(insert_request):
+    """This method implements an exponential backoff strategy to resume a failed upload."""
+    response = None
+    error = None
+    retry = 0
+    while response is None:
+        try:
+            print( "Uploading file...")
+            status, response = insert_request.next_chunk()
+            if response is not None:
+                if 'id' in response:
+                    print ("Video id '%s' was successfully uploaded." % response['id'])
+                else:
+                    exit("The upload failed with an unexpected response: %s" % response)
+        except HttpError as e:
+            if e.resp.status in RETRIABLE_STATUS_CODES:
+                error = "A retriable HTTP error %d occurred:\n%s" % (e.resp.status,
+                                                                    e.content)
+            else:
+                raise
+        except RETRIABLE_EXCEPTIONS as e:
+            error = "A retriable error occurred: %s" % e
+
+    if error is not None:
+        print(error)
+        retry += 1
+        if retry > MAX_RETRIES:
+            exit("No longer attempting to retry.")
+
+        max_sleep = 2 ** retry
+        sleep_seconds = random.random() * max_sleep
+        print("Sleeping %f seconds and then retrying..." % sleep_seconds)
+        time.sleep(sleep_seconds)
+
+@app.route('/authorize')
+def authorize():
+    # Create flow instance to manage the OAuth 2.0 Authorization Grant Flow steps.
+    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+        CLIENT_SECRETS_FILE, scopes=SCOPES)
+
+    # The URI created here must exactly match one of the authorized redirect URIs
+    # for the OAuth 2.0 client, which you configured in the API Console. If this
+    # value doesn't match an authorized URI, you will get a 'redirect_uri_mismatch'
+    # error.
+    flow.redirect_uri = flask.url_for('oauth2callback', _external=True)
+
+    authorization_url, state = flow.authorization_url(
+        # Enable offline access so that you can refresh an access token without
+        # re-prompting the user for permission. Recommended for web server apps.
+        access_type='offline',
+        # Enable incremental authorization. Recommended as a best practice.
+        include_granted_scopes='true')
+
+    # Store the state so the callback can verify the auth server response.
+    flask.session['state'] = state
+
+    return flask.redirect(authorization_url)
+
+@app.route('/oauth2callback')
+def oauth2callback():
+    # Specify the state when creating the flow in the callback so that it can
+    # verified in the authorization server response.
+    state = flask.session['state']
+
+    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+        CLIENT_SECRETS_FILE, scopes=SCOPES, state=state)
+    flow.redirect_uri = flask.url_for('oauth2callback', _external=True)
+
+    # Use the authorization server's response to fetch the OAuth 2.0 tokens.
+    authorization_response = flask.request.url
+    flow.fetch_token(authorization_response=authorization_response)
+
+    # Store credentials in the session.
+    # ACTION ITEM: In a production app, you likely want to save these
+    #              credentials in a persistent database instead.
+    credentials = flow.credentials
+    flask.session['credentials'] = credentials_to_dict(credentials)
+
+    return flask.redirect(flask.url_for('test_api_request'))
+
+@app.route('/clear')
+def clear_credentials():
+    if 'credentials' in flask.session:
+        del flask.session['credentials']
+    return ('Credentials have been cleared')
+
+def credentials_to_dict(credentials):
+    return {'token': credentials.token,
+            'refresh_token': credentials.refresh_token,
+            'token_uri': credentials.token_uri,
+            'client_id': credentials.client_id,
+            'client_secret': credentials.client_secret,
+            'scopes': credentials.scopes}
+
+def print_index_table():
+    return ('<table>' +
+            '<tr><td><a href="/test">Test an API request</a></td>' +
+            '<td>Submit an API request and see a formatted JSON response. ' +
+            '    Go through the authorization flow if there are no stored ' +
+            '    credentials for the user.</td></tr>' +
+            '<tr><td><a href="/authorize">Test the auth flow directly</a></td>' +
+            '<td>Go directly to the authorization flow. If there are stored ' +
+            '    credentials, you still might not be prompted to reauthorize ' +
+            '    the application.</td></tr>' +
+            '<tr><td><a href="/revoke">Revoke current credentials</a></td>' +
+            '<td>Revoke the access token associated with the current user ' +
+            '    session. After revoking credentials, if you go to the test ' +
+            '    page, you should see an <code>invalid_grant</code> error.' +
+            '</td></tr>' +
+            '<tr><td><a href="/clear">Clear Flask session credentials</a></td>' +
+            '<td>Clear the access token currently stored in the user session. ' +
+            '    After clearing the token, if you <a href="/test">test the ' +
+            '    API request</a> again, you should go back to the auth flow.' +
+            '</td></tr></table>')
+
+# Above for video upload
 
 @app.route("/", methods=['GET','POST'])
 def frontpage():
@@ -626,5 +816,5 @@ if __name__ == '__main__':
 
     # Below is the one used for docker
     # app.run(port=8001, host='0.0.0.0', debug=True, use_evalex=False)
-
+    os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
     app.run(port=80, host='0.0.0.0', debug=True, use_evalex=False)
