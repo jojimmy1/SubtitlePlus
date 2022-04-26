@@ -402,7 +402,7 @@ def oneclick_done():
     os.mkdir('./serverfile/output')
     subtitle_name = "./serverfile/oneclick.srt" #input data which is the srt text file
     video_name = "./serverfile/video.mp4" #input data which should be a mp4 file
-    submain(subtitle_name, video_name, 2)
+    submain(subtitle_name, video_name, 0) # Oneclick will only do srt
     # Zip the folder
     shutil.make_archive("./serverfile/MLdata", 'zip', './serverfile/output')
 
@@ -544,13 +544,15 @@ def mldata_submit():
         if (subtitle.filename != ''):
             subtitle.save(os.path.join(app.config['UPLOAD_FOLDER'], filename1))
     
+    subtype = int(flask.request.form['category'])
+
     # Split for ML dataset
     # Need to clean the output before that
     shutil.rmtree('./serverfile/output')
     os.mkdir('./serverfile/output')
     subtitle_name = "./serverfile/subtitle.txt" #input data which is the srt text file
     video_name = "./serverfile/video.mp4" #input data which should be a mp4 file
-    submain(subtitle_name, video_name, 1)
+    submain(subtitle_name, video_name, subtype) # 0 srt, 1 lrc, 2 sbv
     # Zip the folder
     shutil.make_archive("./serverfile/MLdata", 'zip', './serverfile/output')
 
