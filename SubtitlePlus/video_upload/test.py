@@ -97,7 +97,7 @@ def test_api_request():
 
   #return flask.jsonify(**files)
   return ('Video uploaded!!'+print_index_table())
-  
+
 def resumable_upload(insert_request):
   """This method implements an exponential backoff strategy to resume a failed upload."""
   response = None
@@ -177,7 +177,7 @@ def oauth2callback():
   #              credentials in a persistent database instead.
   credentials = flow.credentials
   flask.session['credentials'] = credentials_to_dict(credentials)
-
+  
   return flask.redirect(flask.url_for('test_api_request'))
 
 
