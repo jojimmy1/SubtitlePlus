@@ -47,6 +47,8 @@ def hash_id(id):
 def merge_video_subtitle(video_filename, subtitle_filename, output_filename,scale_w=None,scale_h=None,fps=None):
     """ this function merge video and subtitle
      , input filenames and output filename """
+    if local_debug:
+        return
     if os.path.exists(output_filename):
         os.remove(output_filename)
     video = ffmpeg.input(video_filename)
@@ -89,7 +91,7 @@ def test_api_request():
     priv0 = flask.request.form['priv']
     sche0 = flask.request.form['sche']
     if 'credentials' not in flask.session:
-        return flask.redirect('authorize')
+        return flask.render_template("error.html")
 
     # Load credentials from the session.
     credentials = google.oauth2.credentials.Credentials(**flask.session['credentials'])
@@ -134,10 +136,12 @@ def test_api_request():
     # ACTION ITEM: In a production app, you likely want to save these
     #              credentials in a persistent database instead.
     flask.session['credentials'] = credentials_to_dict(credentials)
-    return 'Video uploaded'
+    return flask.render_template("uploaded.html")
 
 def resumable_upload(insert_request):
     """This method implements an exponential backoff strategy to resume a failed upload."""
+    if local_debug:
+        return
     response = None
     error = None
     retry = 0
@@ -218,7 +222,8 @@ def oauth2callback():
     # return flask.redirect(flask.url_for('test_api_request'))
     print("called from upload: ",called_from_upload)
     if called_from_upload:
-        return flask.redirect(flask.url_for('test_api_request'))
+        # return flask.redirect(flask.url_for('test_api_request'))
+        return redirect('/upload')
     else:
         return redirect('/oneclick')
 
@@ -962,5 +967,6 @@ if __name__ == '__main__':
 
     # Below is the one used for docker
     # app.run(port=8001, host='0.0.0.0', debug=True, use_evalex=False)
+    local_debug = True
     os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
     app.run(port=80, host='0.0.0.0', debug=True, use_evalex=False)

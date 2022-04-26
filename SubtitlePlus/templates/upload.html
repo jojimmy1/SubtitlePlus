@@ -32,7 +32,11 @@
         <h1>Upload video when conversion is ready</h1> 
         
         <br>
-        
+        <a href="/authorize" onclick="javascript:event.target.port=80">Get login credentials</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="/clear" onclick="javascript:event.target.port=80">Remove login credentials</a>
+        <br>
+        <br>
         <form action="/upload_done" method="POST" id = "form" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Title</label>
@@ -84,7 +88,6 @@
 				</div>
 			</div>
 
-            <a href="/clear" onclick="javascript:event.target.port=80">Clear login credentials</a>
             <br>
             <br>
             <div class="form-group">
