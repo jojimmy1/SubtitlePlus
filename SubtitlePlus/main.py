@@ -126,7 +126,7 @@ def test_api_request():
     body=body,
     media_body=MediaFileUpload("./serverfile/merged.mp4", chunksize=-1, resumable=True)
     )
-    # resumable_upload(insert_request)
+    resumable_upload(insert_request)
     # Save credentials back to session in case access token was refreshed.
     # ACTION ITEM: In a production app, you likely want to save these
     #              credentials in a persistent database instead.
@@ -223,7 +223,7 @@ def oauth2callback():
 def clear_credentials():
     if 'credentials' in flask.session:
         del flask.session['credentials']
-    return ('Credentials have been cleared')
+    return flask.render_template("cleared.html")
 
 def credentials_to_dict(credentials):
     return {'token': credentials.token,
@@ -376,12 +376,12 @@ def oneclick_done():
     print("Now at oneclick")
     global called_from_upload
     called_from_upload = False
-    # filename1 = 'video.mp4'
-    # if flask.request.files:
-    #     video = flask.request.files["video"]
-    #     if (video.filename != ''):
-    #         video.save(os.path.join(app.config['UPLOAD_FOLDER'], filename1))
-    #         return "Another branch"
+    filename1 = 'video.mp4'
+    if flask.request.files:
+        video = flask.request.files["video"]
+        if (video.filename != ''):
+            video.save(os.path.join(app.config['UPLOAD_FOLDER'], filename1))
+            return redirect("/oneclick")
 
     # Capture info
     startime = flask.request.form['startime']
@@ -410,7 +410,7 @@ def oneclick_done():
     width0 = convert_non_blank_int(flask.request.form['width0'])
     height0 = convert_non_blank_int(flask.request.form['height0'])
     fps0 = convert_non_blank_int(flask.request.form['fps0'])
-    # merge_video_subtitle("./serverfile/video.mp4", "./serverfile/oneclick.srt", "./serverfile/merged.mp4",width0, height0, fps0)
+    merge_video_subtitle("./serverfile/video.mp4", "./serverfile/oneclick.srt", "./serverfile/merged.mp4",width0, height0, fps0)
     
     # Do the upload
     title0 = flask.request.form['title']
@@ -420,7 +420,7 @@ def oneclick_done():
     priv0 = flask.request.form['priv']
     sche0 = flask.request.form['sche']
     if 'credentials' not in flask.session:
-        return "ERROR: Have to login to YouTube first to get the credentials."
+        return flask.render_template("error.html")
 
     # Load credentials from the session.
     credentials = google.oauth2.credentials.Credentials(**flask.session['credentials'])
@@ -460,15 +460,14 @@ def oneclick_done():
     body=body,
     media_body=MediaFileUpload("./serverfile/merged.mp4", chunksize=-1, resumable=True)
     )
-    # resumable_upload(insert_request)
+    resumable_upload(insert_request)
     # Save credentials back to session in case access token was refreshed.
     # ACTION ITEM: In a production app, you likely want to save these
     #              credentials in a persistent database instead.
     flask.session['credentials'] = credentials_to_dict(credentials)
     # Above upload completed
 
-    return redirect("/downloadmerged")
-    # return "Yes" # Download the files from new webpage, can select what to download
+    return flask.render_template("download.html") # Download the files from new webpage, can select what to download
 
 app.config["IMGU"] = "./static/pic"
 @app.route("/createUser", methods=['POST'])
