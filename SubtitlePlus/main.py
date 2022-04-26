@@ -13,6 +13,7 @@ import os
 import glob
 import shutil
 import ffmpeg
+import os.path
 
 # Below for video upload
 import requests
@@ -46,6 +47,8 @@ def hash_id(id):
 def merge_video_subtitle(video_filename, subtitle_filename, output_filename,scale_w=None,scale_h=None,fps=None):
     """ this function merge video and subtitle
      , input filenames and output filename """
+    if os.path.exists(output_filename):
+        os.remove(output_filename)
     video = ffmpeg.input(video_filename)
     audio = video.audio
     if fps != None:
