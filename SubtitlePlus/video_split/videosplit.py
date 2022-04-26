@@ -2,7 +2,6 @@
 from moviepy.editor import *
 import re
 def clip_time(input_txt):
-    """This function is to clip the time based on the srt file. It will create a list of tuple which contains the lower bound of the time and the upper bound of the clock"""
     time_slot = {}
     num_of_line = 1
     with open(input_txt, 'r') as time_file:
@@ -19,9 +18,8 @@ def clip_time(input_txt):
             time_slot[num_of_line] = (min_digit, max_digit)
             num_of_line += 1
     return time_slot
-
 def video_split(time_slot, video_name):
-    """This function will generate the mp4 file"""
+    key = 0
     for i, j in time_slot.items():
         min_val = j[0]
         max_val = j[1]
@@ -34,9 +32,7 @@ def video_split(time_slot, video_name):
             new.write_videofile(output_video_path, codec = "libx264")
     key = int(key)
     mp4_2_mp3(key)
-
 def mp4_2_mp3(key):
-    """This function will convert mp4 file to mp3 file"""
     for i in range (1, key + 1):
         target = "./serverfile/output/"+str(i) + "test.mp4"
         video = AudioFileClip(target)
