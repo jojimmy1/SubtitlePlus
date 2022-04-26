@@ -402,7 +402,7 @@ def oneclick_done():
     os.mkdir('./serverfile/output')
     subtitle_name = "./serverfile/oneclick.srt" #input data which is the srt text file
     video_name = "./serverfile/video.mp4" #input data which should be a mp4 file
-    submain(subtitle_name, video_name)
+    submain(subtitle_name, video_name, 2)
     # Zip the folder
     shutil.make_archive("./serverfile/MLdata", 'zip', './serverfile/output')
 
@@ -550,7 +550,7 @@ def mldata_submit():
     os.mkdir('./serverfile/output')
     subtitle_name = "./serverfile/subtitle.txt" #input data which is the srt text file
     video_name = "./serverfile/video.mp4" #input data which should be a mp4 file
-    submain(subtitle_name, video_name)
+    submain(subtitle_name, video_name, 1)
     # Zip the folder
     shutil.make_archive("./serverfile/MLdata", 'zip', './serverfile/output')
 
