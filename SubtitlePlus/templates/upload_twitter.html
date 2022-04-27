@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SubtitlePlus</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel = "stylesheet" href = "../static/styles/tab.css">
+</head>
+<body>
+    <div class="topnav">
+        <a href="/?id=private-ntleymiy6" onclick="javascript:event.target.port=5000">Subtitle Edit</a>
+        <!-- <a class="active" href="#">One Click</a> -->
+        <a href="/oneclick" onclick="javascript:event.target.port=80">One Click</a>
+        <!-- <a class="active" href="#">Subtitle Request</a> -->
+        <a href="/register" onclick="javascript:event.target.port=80">Subtitle Request</a>
+        <!-- <a class="active" href="#">Machine Learning Dataset</a> -->
+        <a href="/mldata" onclick="javascript:event.target.port=80">Machine Learning Dataset</a>
+        <!-- <a class="active" href="#">Merge</a> -->
+        <a href="/export" onclick="javascript:event.target.port=80">Merge</a>
+        <!-- <a href="/upload" onclick="javascript:event.target.port=80">Upload</a> -->
+        <a class="active" href="#">Upload</a>
+    </div>
+
+    <div class="container">
+
+        <br>
+        
+        <h1>Make a tweet</h1> 
+        <h3>Tell your audience on twitter that you just posted a new video.</h3> 
+        
+        <br>
+        <a href="/upload" onclick="javascript:event.target.port=80">Upload videos</a>
+        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="/clear" onclick="javascript:event.target.port=80">Remove login credentials</a> -->
+        <br>
+        <br>
+        <form action="/tweet_done" method="POST" id = "form" enctype="multipart/form-data">
+
+            <div class="form-group">
+                <label for="descr">Tweet</label>
+                <!-- <input type="text" class="form-control" name="descr" id="descr" /> -->
+                <textarea rows="5" class="form-control" name="descr" id="descr"></textarea>
+            </div>
+
+            
+
+            <br>
+            <br>
+            <div class="form-group">
+                <button type="submit" value="Submit" class="btn btn-primary">
+                    Send
+                </button>
+            </div>
+
+        </form>
+        
+
+    </div>
+
+</body>
+</html>
