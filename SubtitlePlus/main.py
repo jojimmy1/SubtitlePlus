@@ -83,10 +83,10 @@ authorize_url = 'https://api.twitter.com/oauth/authorize'
 show_user_url = 'https://api.twitter.com/1.1/users/show.json'
 
 # Support keys from environment vars (Heroku).
-# app.config['APP_CONSUMER_KEY'] = "S21k0RuDj0DC7Ki3vioxjz6zM" #os.getenv('TWAUTH_APP_CONSUMER_KEY', 'API_Key_from_Twitter')
-app.config['APP_CONSUMER_KEY'] = "DR9DT9x3JWiqhLRHWNnYRbSZM" #os.getenv('TWAUTH_APP_CONSUMER_KEY', 'API_Key_from_Twitter')
-# app.config['APP_CONSUMER_SECRET'] = "I0nV5X0T3XnPFMi5fhWBSDsZkcDHKJatMvYbisj5wpZZCVrYxp" #os.getenv('TWAUTH_APP_CONSUMER_SECRET', 'API_Secret_from_Twitter')
-app.config['APP_CONSUMER_SECRET'] = "WccHxMV1comZJGhyXX4TbF7nLhUgEPp2D7dhlJnIsYIqU3sysD" #os.getenv('TWAUTH_APP_CONSUMER_SECRET', 'API_Secret_from_Twitter')
+app.config['APP_CONSUMER_KEY'] = "FKETOlnmKo7MJKsyz0H8g9tAJ" #os.getenv('TWAUTH_APP_CONSUMER_KEY', 'API_Key_from_Twitter')
+# app.config['APP_CONSUMER_KEY'] = "DR9DT9x3JWiqhLRHWNnYRbSZM" #os.getenv('TWAUTH_APP_CONSUMER_KEY', 'API_Key_from_Twitter')
+app.config['APP_CONSUMER_SECRET'] = "BLHIQsT1chV62ufALRV30icFYLvg4fUl3lHHHrO12NQ6mD92ul" #os.getenv('TWAUTH_APP_CONSUMER_SECRET', 'API_Secret_from_Twitter')
+# app.config['APP_CONSUMER_SECRET'] = "WccHxMV1comZJGhyXX4TbF7nLhUgEPp2D7dhlJnIsYIqU3sysD" #os.getenv('TWAUTH_APP_CONSUMER_SECRET', 'API_Secret_from_Twitter')
 oauth_store = {}
 payload = {"text": "initial text"}
 fields = "created_at,description"
