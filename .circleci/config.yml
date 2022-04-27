@@ -27,7 +27,6 @@ jobs:
                   echo Hello, World!
                   cd SubtitlePlus
                   docker build . -t jojimmy/subplus-node:v2.2.0
-                  docker run -p 80:80 jojimmy/subplus-python:v2.2.0
 
   build-and-test:
     docker:
