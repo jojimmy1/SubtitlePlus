@@ -5,14 +5,18 @@ def test_register():
     response = app.test_client().get('/register')
     assert response.status_code == 200
 
-def test_create_complete():
-    response = app.test_client().get('/11272744/create')
+def test_upload():
+    response = app.test_client().get('/upload')
     assert response.status_code == 200
 
-def test_profile_page():
-    response = app.test_client().get('/11272744/profile/1')
+def test_frontpage():
+    response = app.test_client().get('/')
     assert response.status_code == 200
 
-def test_feed_page():
-    response = app.test_client().get('/11272744/feed/1')
+def test_machine_learning_data():
+    response = app.test_client().get('/mldata')
+    assert response.status_code == 200
+
+def test_oneclick():
+    response = app.test_client().get('/oneclick')
     assert response.status_code == 200

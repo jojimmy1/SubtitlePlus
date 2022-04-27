@@ -25,9 +25,10 @@ jobs:
           name: "Say hello"
           command: | 
                   echo Hello, World!
-                  cd miniReddit
-                  ls
-                  docker build . -t python-minred:v3.0
+                  cd SubtitlePlus
+                  docker build . -t jojimmy/subplus-node:v2.2.0
+                  docker run -p 80:80 jojimmy/subplus-python:v2.2.0
+
   build-and-test:
     docker:
       - image: cimg/python:3.8
@@ -38,7 +39,7 @@ jobs:
       - run:
           name: Run tests
           command: |
-                   cd miniReddit
+                   cd SubtitlePlus
                    python -m pytest
   # lint-code:
     # jobs:
@@ -52,9 +53,9 @@ workflows:
     jobs:
       - test-docker
       # - lint-code
-  lint-code:
-    jobs:
-      - github-super-linter/lint
+  # lint-code:
+    # jobs:
+      # - github-super-linter/lint
   test-flask:
     jobs:
       - build-and-test
