@@ -539,6 +539,9 @@ def oneclick_done():
     startime = flask.request.form['startime']
     endtime = flask.request.form['endtime']
     content = flask.request.form['content']
+
+    if 'credentials' not in flask.session:
+        return flask.render_template("error.html")
     
     # Generate srt files from string
     srtString = getSRT(startime, endtime, content)
