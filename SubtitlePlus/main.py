@@ -525,6 +525,14 @@ def oneclick_done():
         video = flask.request.files["video"]
         if (video.filename != ''):
             video.save(os.path.join(app.config['UPLOAD_FOLDER'], filename1))
+            try:
+                shutil.copyfile("./serverfile/video.mp4", "./SubtitleEdit/media/video.mp4")
+            except shutil.SameFileError:
+                print("Source and destination represents the same file.")
+            except PermissionError:
+                print("Permission denied.")
+            except:
+                print("Error occurred while copying file.")
             return redirect("/oneclick")
 
     # Capture info

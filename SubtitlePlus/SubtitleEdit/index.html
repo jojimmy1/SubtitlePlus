@@ -53,7 +53,7 @@
     
     <div id="video1">
       <video id="myVideo" width="640" height="352" controls>
-        <source src="./media/nasa.mp4" type="video/mp4">
+        <source src="./media/video.mp4" type="video/mp4">
       </video>
 
       <br>
@@ -151,7 +151,7 @@
       <!-- visual -->
               <div class="row" style="margin: 30px 0">
                   <div class="col-sm-10">
-                      <ng-wavesurfer url="./media/nasa.mp4" wave-color="#337ab7" progress-color="#23527c" height="64">
+                      <ng-wavesurfer url="./media/video.mp4" wave-color="#337ab7" progress-color="#23527c" height="64">
                       </ng-wavesurfer>
                   </div>
 
@@ -173,10 +173,10 @@
       <!-- music -->
               <div class="list-group" id="playlist">
                   <a href=""
-                     ng-class="{ 'list-group-item': true, active: isPlaying('./media/nasa.mp4') }"
-                     ng-click="play('./media/nasa.mp4')">
+                     ng-class="{ 'list-group-item': true, active: isPlaying('./media/video.mp4') }"
+                     ng-click="play('./media/video.mp4')">
                       <i class="glyphicon glyphicon-play"></i>
-                      Nasa video
+                      Audio
                       <span class="badge">0:21</span>
                   </a>
 
