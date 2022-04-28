@@ -1114,6 +1114,6 @@ if __name__ == '__main__':
 
     # Below is the one used for docker
     # app.run(port=8001, host='0.0.0.0', debug=True, use_evalex=False)
-    local_debug = True
+    local_debug = False
     os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
     app.run(port=80, host='0.0.0.0', debug=True, use_evalex=False)
