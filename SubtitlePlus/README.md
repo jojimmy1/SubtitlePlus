@@ -40,8 +40,8 @@ docker pull https://hub.docker.com/repository/docker/jojimmy/subplus-node
 
 - Create container and run it
 ``` bash
-docker run -p 8001:8001 jojimmy/subplus-python:v2.0.0
-docker run -p 5000:5000 jojimmy/subplus-node:v2.0.0
+docker run -p 8001:8001 jojimmy/subplus-python:v3.0.1
+docker run -p 5000:5000 jojimmy/subplus-node:v3.0.1
 ```
 
 - Frontend
